@@ -59,7 +59,7 @@ export function About() {
                   <div className="mt-6">
                     <p className="font-medium mb-3 text-lg">Relevant Coursework:</p>
                     <div className="flex flex-wrap gap-3">
-                      {["AI", "DSA", "Linear Algebra", "Probability & Stats", "Parallel Computing"].map((course) => (
+                      {["AI", "Deep Learning", "MLOPs", "OOP", "DSA", "Linear Algebra", "Probability & Stats", "Parallel Computing"].map((course) => (
                         <span 
                           key={course}
                           className="px-3 py-2 bg-primary/10 text-primary text-sm rounded-full font-medium"

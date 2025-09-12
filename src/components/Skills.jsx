@@ -13,7 +13,7 @@ const skillCategories = [
       { name: "Java", icon: "☕", level: 80 },
       { name: "C++", icon: "⚡", level: 85 },
       { name: "C", icon: "🔧", level: 80 },
-      { name: "C#", icon: "🔷", level: 75 },
+      { name: "C#", icon: "🔷", level: 89 },
       { name: "Assembly", icon: "⚙️", level: 70 },
     ],
   },
@@ -25,14 +25,12 @@ const skillCategories = [
       { name: "Deep Learning", icon: "🧠", level: 85 },
       { name: "NLP", icon: "🗣️", level: 82 },
       { name: "Gen AI", icon: "🧠", level: 90 },
-      { name: "Computer Vision", icon: "👁️", level: 80 },
+      { name: "Computer Vision", icon: "👁️", level: 65 },
       { name: "Model Evaluation", icon: "🧪", level: 86 },
       { name: "Time Series Analysis", icon: "⏱️", level: 78 },
       { name: "RAG Pipelines", icon: "🔎", level: 82 },
       { name: "Embeddings", icon: "🧬", level: 84 },
-      { name: "MLflow (Tracking)", icon: "🧾", level: 76 },
-      { name: "Model Serving (FastAPI, Flask)", icon: "🛰️", level: 78 },
-      { name: "Experiment Tracking (W&B)", icon: "📊", level: 74 },
+      { name: "MLflow (Tracking)", icon: "🧾", level: 76 }
     ],
   },
   {
@@ -55,7 +53,7 @@ const skillCategories = [
       { name: "MongoDB", icon: "🍃", level: 80 },
       { name: "MySQL", icon: "🐬", level: 85 },
       { name: "SQL Server", icon: "🔵", level: 82 },
-      { name: "PostgreSQL", icon: "🐘", level: 78 },
+      { name: "PostgreSQL", icon: "🐘", level: 69 },
     ],
   },
   {
@@ -64,8 +62,8 @@ const skillCategories = [
     skills: [
       { name: ".NET Framework", icon: "🔷", level: 75 },
       { name: "JavaFX", icon: "☕", level: 72 },
-      { name: "Spring Boot", icon: "🍃", level: 75 },
       { name: "TensorFlow", icon: "🧠", level: 90 },
+      { name: "PyTorch", icon: "🔥", level: 85 },
       { name: "Scikit-learn", icon: "📊", level: 88 },
       { name: "Pandas", icon: "🐼", level: 92 },
       { name: "NumPy", icon: "🔢", level: 90 },
@@ -77,8 +75,8 @@ const skillCategories = [
     title: "Game Dev & Simulation",
     icon: "🎮",
     skills: [
-      { name: "Unity", icon: "⚫", level: 75 },
-      { name: "Unreal Engine", icon: "🔷", level: 72 },
+      { name: "Unity", icon: "⚫", level: 80 },
+      { name: "Unreal Engine", icon: "🔷", level: 65 },
     ],
   },
   {
@@ -322,8 +320,14 @@ export function Skills() {
 
         {/* Tech Tags */}
         <div className="mt-16 text-center">
-          <div className="inline-flex flex-wrap gap-4 justify-center">
+          {/* <div className="inline-flex flex-wrap gap-4 justify-center">
             {[
+              "Python",
+              "JavaScript",
+              "Java",
+              "C++",
+              "C",
+              "C#",
               "AI/ML",
               "Full Stack",
               "React",
@@ -343,7 +347,7 @@ export function Skills() {
                 {tech}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

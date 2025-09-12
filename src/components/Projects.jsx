@@ -175,7 +175,7 @@ export function Projects() {
             {/* Active slide */}
             <Card className="border-0 bg-transparent shadow-none">
               <CardContent className="p-0">
-                <div className={`${p.color} p-6 text-white relative overflow-hidden rounded-xl`}>
+              <div className={`${p.color} p-6 relative overflow-hidden rounded-xl`}>
                   <div className="absolute top-0 right-0 text-7xl opacity-20 rotate-12 select-none">
                     {p.image}
                   </div>
@@ -186,7 +186,7 @@ export function Projects() {
                       </Badge>
                       <span className="text-sm opacity-90">{p.period}</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">{p.title}</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">{p.title}</h3>
                     <p className="text-white/90">{p.description}</p>
                   </div>
                 </div>
