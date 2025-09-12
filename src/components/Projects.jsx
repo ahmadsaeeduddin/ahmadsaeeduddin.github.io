@@ -187,7 +187,7 @@ export function Projects() {
                       <span className="text-sm opacity-90">{p.period}</span>
                     </div>
                     <h3 className="text-2xl font-bold mb-2 text-foreground">{p.title}</h3>
-                    <p className="text-white/90">{p.description}</p>
+                    <p className="text-muted-foreground">{p.description}</p>
                   </div>
                 </div>
 
