@@ -181,9 +181,12 @@ export function Projects() {
                   </div>
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary" className="bg-white/20 text-white border-0">
-                        {p.category}
-                      </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="border-0 bg-black/10 text-black dark:bg-white/20 dark:text-white transition-colors"
+                    >
+                      {p.category}
+                    </Badge>
                       <span className="text-sm opacity-90">{p.period}</span>
                     </div>
                     <h3 className="text-2xl font-bold mb-2 text-foreground">{p.title}</h3>

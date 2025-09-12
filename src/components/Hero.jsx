@@ -94,7 +94,7 @@ export function Hero() {
             {/* Download Resume */}
             <div className="stagger-animation mt-6" style={{ animationDelay: "0.5s" }}>
             <Button asChild variant="ghost" className="text-muted-foreground hover:text-primary">
-              <a href="/portfolio2.0/Saeed-Ud-Din-Ahmad_AI.pdf" download="Saeed-Ud-Din-Ahmad_AI.pdf">
+              <a href="/Saeed-Ud-Din-Ahmad_AI.pdf" download="Saeed-Ud-Din-Ahmad_AI.pdf">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
