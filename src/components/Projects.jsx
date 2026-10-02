@@ -68,7 +68,7 @@ export function Projects() {
       },      
       {
         title: "Rocket Simulation",
-        period: "Jan 2025 - 2026",
+        period: "Jan 2025 - Jun 2026",
         description:
           "Rocket simulation for NESCOM with realistic aerodynamics and physics.",
         longDescription:

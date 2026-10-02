@@ -117,7 +117,7 @@ export function Contact() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              {/* <Card className="hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
                     <div className="hero-gradient p-3 rounded-lg">
@@ -134,7 +134,7 @@ export function Contact() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               <Card className="hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
