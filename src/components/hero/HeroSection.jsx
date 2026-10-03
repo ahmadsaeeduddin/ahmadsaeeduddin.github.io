@@ -142,7 +142,7 @@ export function HeroSection() {
               { autoAlpha: 1, y: 0, scale: 1.06 },
               0.12
             )
-            .to(connections, { autoAlpha: 0.38 }, 0)
+            .fromTo(connections, { autoAlpha: 0.7 }, { autoAlpha: 0.12 }, 0)
             .to(atmosphere, { y: (_, element) => (element.dataset.depth === "far" ? -18 : -34) }, 0)
             .to(indicator, { autoAlpha: 0, y: 12, duration: 0.18 }, 0);
         };
@@ -226,9 +226,8 @@ export function HeroSection() {
         className="absolute right-[-13%] top-[8%] z-0 h-[34rem] w-[34rem] rounded-full bg-[#7A1020]/10 blur-3xl dark:bg-white/[0.012]"
       />
 
-      <HeroName />
-
       <HeroConnections />
+      <HeroName />
 
       <div className="absolute inset-x-3 top-[45%] z-30 grid grid-cols-2 gap-2.5 sm:inset-x-8 sm:top-[47%] sm:gap-4 lg:inset-0 lg:top-0 lg:block">
         {features.map((feature) => (

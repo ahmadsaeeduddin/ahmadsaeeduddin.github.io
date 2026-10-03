@@ -20,7 +20,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="group relative h-12 w-12 overflow-hidden rounded-full border border-slate-200/80 bg-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,.9)] hover:border-[#B51B32]/30 hover:bg-white hover:text-[#B51B32] dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-200 dark:shadow-none dark:hover:bg-white/10 dark:hover:text-[#d65a68]"
+      className="group relative h-10 w-10 overflow-hidden rounded-xl border border-slate-200/80 bg-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,.9)] hover:border-[#B51B32]/30 hover:bg-white hover:text-[#B51B32] dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-200 dark:shadow-none dark:hover:bg-white/10 dark:hover:text-[#d65a68]"
     >
       <Sun 
         className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-500 ease-in-out dark:-rotate-90 dark:scale-0" 

@@ -310,7 +310,7 @@ export function HeroConnections() {
       ref={canvasRef}
       data-hero-connections
       aria-label="Interactive spider web pattern"
-      className="pointer-events-none absolute inset-0 z-[15] h-full w-full"
+      className="pointer-events-none absolute inset-0 z-[6] h-full w-full opacity-70"
     />
   );
 }
