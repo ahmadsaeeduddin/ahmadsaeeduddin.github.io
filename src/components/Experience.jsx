@@ -7,25 +7,72 @@ const experiences = [
     company: "Genesys Research Lab",
     period: "Jun – Aug 2025",
     location: "OnSite",
-    description: "Worked on cutting-edge Natural Language Processing and Generative AI projects, developing innovative solutions for text analysis and language model optimization.",
-    gradient: "from-purple-500 to-pink-500"
+    category: "professional",
+    logo: "/logos/genesys.png",
+    employment_type: "Internship",
+    description:
+      "Worked on Natural Language Processing and Generative AI projects, developing solutions for text analysis, language models, and applied AI research.",
   },
+
   {
     title: "Full Stack Developer",
-    company: "DsportHub",
-    period: "Aug - Sept 2025", 
+    company: "Shaoor",
+    period: "Aug – Sept 2025",
     location: "Remote",
-    description: "Developed comprehensive web applications using modern tech stack, focusing on user experience and performance optimization.",
-    gradient: "from-blue-500 to-cyan-500"
+    category: "professional",
+    employment_type: "Internship",
+    logo: "/logos/shaoor.png",
+    description:
+      "Developed full-stack web applications using modern technologies, focusing on user experience, backend integration, and performance optimization.",
   },
+
+  {
+    title: "AI Engineer",
+    company: "Intellema",
+    period: "Nov 2025 – Present",
+    location: "Remote / Islamabad",
+    category: "professional",
+    employment_type: "Full-time",
+    logo: "/logos/intellema.png",
+    description:
+      "Building Agentic AI systems, RAG pipelines, LLM-powered applications, voice AI solutions, and AI backend services for real-world enterprise workflows.",
+  },
+
+  {
+    title: "Aerospace Research Collaboration",
+    company: "NESCOM",
+    period: "2025 – 2026",
+    location: "Islamabad, Pakistan",
+    category: "collaboration",
+    employment_type: "Research",
+    logo: "/logos/nescom.png",
+    description:
+      "Collaborated with NESCOM on an aerospace simulation and telemetry platform, combining rocket dynamics, real-time telemetry, weather, terrain, geospatial data, and 3D visualization.",
+  },
+
   {
     title: "Co-Founder",
     company: "Khanabadosh Explorers",
     period: "Mar 2024 – Present",
     location: "Islamabad, Pakistan",
-    description: "Launched a student travel startup, successfully organized 10+ trips for 300+ participants. Managed operations, vendor negotiations, and team coordination.",
-    gradient: "from-green-500 to-emerald-500"
-  }
+    employment_type: "Self Employed",
+    category: "venture",
+    logo: "/logos/khanabadosh.png",
+    description:
+      "Co-founded a student travel startup, organizing trips for university students and managing operations, vendor coordination, logistics, and team execution.",
+  },
+
+  {
+    title: "Co-Founder",
+    company: "Nimco",
+    period: "2024 – Present",
+    location: "Islamabad, Pakistan",
+    employment_type: "Self Employed",
+    category: "venture",
+    logo: "/logos/nimco.png",
+    description:
+      "Co-founded a community initiative supporting people in need, raising 100K+ PKR and helping deliver 200+ meals through donation and community efforts.",
+  },
 ];
 
 export function Experience() {
@@ -33,7 +80,7 @@ export function Experience() {
     <section id="experience" className="py-20 bg-accent/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
+          <h2 className="text-3xl md:text`-4xl font-bold mb-4">Experience</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             My professional journey and the amazing teams I've had the privilege to work with.
           </p>
