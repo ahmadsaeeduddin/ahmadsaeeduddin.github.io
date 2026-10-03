@@ -96,11 +96,6 @@ export function About() {
         <div className="hidden lg:block" aria-hidden="true" />
 
         <div className="px-5 pb-14 pt-9 sm:px-9 lg:px-9 lg:py-14 xl:px-12 2xl:px-16">
-          <div className="mb-5 flex items-center gap-4 text-[10px] font-bold tracking-[0.22em] text-slate-400">
-            <span>01</span>
-            <span className="h-px w-9 bg-slate-300 dark:bg-white/20" />
-          </div>
-
           <div className="grid gap-7 xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-8 2xl:grid-cols-[minmax(0,1fr)_17rem]">
             <div>
               <p className="mb-4 inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-xs font-black uppercase tracking-[0.38em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
@@ -108,8 +103,6 @@ export function About() {
               </p>
               <h2 className="max-w-2xl text-balance text-[clamp(2.35rem,3.35vw,4rem)] font-black leading-[0.98] tracking-[-0.055em] text-[#080d35] dark:text-white">
                 Curious mind.
-                <br />
-                Builder at heart<span className="text-[#B51B32]">.</span>
               </h2>
 
               <div className="mt-5 max-w-2xl space-y-3 text-[13px] leading-6 text-slate-600 dark:text-slate-300 sm:text-sm">

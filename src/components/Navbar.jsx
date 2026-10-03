@@ -7,6 +7,7 @@ import {
   ChevronDown,
   ChevronUp,
   Folder,
+  GraduationCap,
   Home,
   Layers3,
   MessageCircle,
@@ -18,6 +19,7 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   { name: "Home", href: "#home", icon: Home },
   { name: "About", href: "#about", icon: UserRound },
+  { name: "Education", href: "#education", icon: GraduationCap },
   { name: "Skills", href: "#skills", icon: Layers3 },
   { name: "Experience", href: "#experience", icon: BriefcaseBusiness },
   { name: "Projects", href: "#projects", icon: Folder },
