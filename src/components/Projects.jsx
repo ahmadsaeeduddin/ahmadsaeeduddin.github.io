@@ -187,10 +187,10 @@ function ProjectVisual({ project }) {
       <span className="project-orbit absolute inset-[3%] rounded-full border border-dashed border-[#2145D6]/25 dark:border-white/25" />
       <span className="project-orbit project-orbit-reverse absolute -inset-[7%] rounded-full border border-dashed border-[#7A1020]/20 dark:border-white/15" />
       <span className="absolute left-[4%] top-1/2 h-3 w-3 rounded-full bg-[#E5202F] shadow-[0_0_18px_rgba(229,32,47,.85)]" />
-      <span className="absolute right-[-5%] top-[28%] h-3 w-3 rounded-full bg-[#5B6DF0] shadow-[0_0_18px_rgba(91,109,240,.9)]" />
+      <span className="absolute right-[-5%] top-[28%] h-3 w-3 rounded-full bg-[#5B6DF0] shadow-[0_0_18px_rgba(91,109,240,.9)] dark:bg-white dark:shadow-[0_0_18px_rgba(255,255,255,.45)]" />
 
       <div className="project-tile relative grid aspect-square w-[66%] place-items-center overflow-hidden rounded-[2rem] border border-[#0B1450]/10 bg-white/60 shadow-[0_30px_60px_-30px_rgba(11,20,80,.45)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.08] dark:shadow-[0_30px_60px_-30px_rgba(0,0,0,.9)]">
-        <span className="absolute inset-0 bg-gradient-to-br from-[#2145D6]/10 via-transparent to-[#E5202F]/10 dark:from-[#2145D6]/20 dark:to-[#E5202F]/20" />
+        <span className="absolute inset-0 bg-gradient-to-br from-[#2145D6]/10 via-transparent to-[#E5202F]/10 dark:from-white/[0.08] dark:to-[#E5202F]/20" />
         <Icon className="relative h-[46%] w-[46%] text-[#0B1450] drop-shadow-[0_15px_18px_rgba(11,20,80,.2)] dark:text-white dark:drop-shadow-[0_15px_18px_rgba(0,0,0,.38)]" strokeWidth={1.35} />
       </div>
     </div>
@@ -205,7 +205,7 @@ function ExpandedProject({ project, onOpenDetails }) {
           <span className="rounded-full border border-[#0B1450]/10 bg-white/65 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-[#0B1450] shadow-sm dark:border-white/20 dark:bg-white/10 dark:text-white">
             {project.category}
           </span>
-          <span className="text-xs font-bold text-[#667492] dark:text-[#9eaae1]">
+          <span className="text-xs font-bold text-[#667492] dark:text-white/55">
             {project.period}
           </span>
         </div>
@@ -222,7 +222,7 @@ function ExpandedProject({ project, onOpenDetails }) {
           ))}
         </h3>
 
-        <p className="project-preview-copy mt-4 max-w-2xl text-sm font-medium leading-6 text-[#53617f] dark:text-[#b8c1e8] sm:text-[15px]">
+        <p className="project-preview-copy mt-4 max-w-2xl text-sm font-medium leading-6 text-[#53617f] dark:text-white/65 sm:text-[15px]">
           {project.preview}
         </p>
 
@@ -230,14 +230,14 @@ function ExpandedProject({ project, onOpenDetails }) {
           <p className="bg-gradient-to-r from-[#ff6a78] to-[#7c98ff] bg-clip-text text-4xl font-black tracking-[-0.05em] text-transparent sm:text-5xl">
             {project.metric}
           </p>
-          <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-[#697696] dark:text-[#8e9acb]">
+          <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-[#697696] dark:text-white/45">
             {project.metricLabel}
           </p>
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2">
           {project.technologies.slice(0, 4).map((technology) => (
-            <span key={technology} className="rounded-full border border-[#0B1450]/10 bg-white/35 px-3 py-1.5 text-[11px] font-semibold text-[#3f4d6d] transition duration-300 hover:-translate-y-0.5 hover:bg-white/75 dark:border-white/15 dark:bg-transparent dark:text-[#d5dcff] dark:hover:bg-white/10">
+            <span key={technology} className="rounded-full border border-[#0B1450]/10 bg-white/35 px-3 py-1.5 text-[11px] font-semibold text-[#3f4d6d] transition duration-300 hover:-translate-y-0.5 hover:bg-white/75 dark:border-white/15 dark:bg-transparent dark:text-white/75 dark:hover:bg-white/10">
               {technology}
             </span>
           ))}
@@ -251,7 +251,7 @@ function ExpandedProject({ project, onOpenDetails }) {
         <button
           type="button"
           onClick={onOpenDetails}
-          className="group mt-7 inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(33,69,214,.7)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_-14px_rgba(181,27,50,.68)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="group mt-7 inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(33,69,214,.7)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_-14px_rgba(181,27,50,.68)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white dark:from-[#151515] dark:via-[#7A1020] dark:to-[#B51B32]"
         >
           More details
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -267,7 +267,7 @@ function ExpandedProject({ project, onOpenDetails }) {
 
 function ProjectDetails({ project, onClose }) {
   return (
-    <div className="project-details-enter absolute inset-0 z-30 overflow-y-auto bg-white/95 p-6 backdrop-blur-2xl dark:bg-[#090b12]/95 sm:p-9 xl:p-11">
+    <div className="project-details-enter absolute inset-0 z-30 overflow-y-auto bg-white/95 p-6 backdrop-blur-2xl dark:bg-[#080808]/95 sm:p-9 xl:p-11">
       <div className="mx-auto flex min-h-full max-w-4xl flex-col justify-center">
         <div className="flex items-start justify-between gap-5">
           <div>
@@ -288,13 +288,13 @@ function ProjectDetails({ project, onClose }) {
           </button>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm font-medium leading-7 text-[#53617f] dark:text-[#b8c1e8] sm:text-base">
+        <p className="mt-6 max-w-3xl text-sm font-medium leading-7 text-[#53617f] dark:text-white/65 sm:text-base">
           {project.details}
         </p>
 
         <div className="mt-7 grid gap-4 sm:grid-cols-3">
           {project.highlights.map((highlight) => (
-            <div key={highlight} className="rounded-2xl border border-[#0B1450]/10 bg-[#f5f6fc]/80 p-4 text-sm font-bold text-[#33415f] dark:border-white/10 dark:bg-white/[0.06] dark:text-[#d8ddf7]">
+            <div key={highlight} className="rounded-2xl border border-[#0B1450]/10 bg-[#f5f6fc]/80 p-4 text-sm font-bold text-[#33415f] dark:border-white/10 dark:bg-white/[0.06] dark:text-white/80">
               <span className="mr-2 text-[#B51B32]">{"\u2726"}</span>
               {highlight}
             </div>
@@ -303,7 +303,7 @@ function ProjectDetails({ project, onClose }) {
 
         <div className="mt-7 flex flex-wrap gap-2">
           {project.technologies.map((technology) => (
-            <span key={technology} className="rounded-full border border-[#2145D6]/15 bg-[#2145D6]/[0.05] px-3 py-1.5 text-xs font-bold text-[#33415f] dark:border-white/15 dark:bg-white/[0.06] dark:text-[#d5dcff]">
+            <span key={technology} className="rounded-full border border-[#2145D6]/15 bg-[#2145D6]/[0.05] px-3 py-1.5 text-xs font-bold text-[#33415f] dark:border-white/15 dark:bg-white/[0.06] dark:text-white/75">
               {technology}
             </span>
           ))}
@@ -313,7 +313,7 @@ function ProjectDetails({ project, onClose }) {
           href={project.source}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-8 inline-flex w-fit items-center gap-3 rounded-xl bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(33,69,214,.7)] transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6]"
+          className="group mt-8 inline-flex w-fit items-center gap-3 rounded-xl bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(33,69,214,.7)] transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6] dark:from-[#151515] dark:via-[#7A1020] dark:to-[#B51B32] dark:focus-visible:ring-white"
         >
           <Github className="h-4 w-4" aria-hidden="true" />
           View source
@@ -378,10 +378,10 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7f8ff_0%,#fff5f5_48%,#f1f3ff_100%)] text-[#0B1450] dark:bg-[linear-gradient(180deg,#08090c_0%,#0b0b12_50%,#090b18_100%)] dark:text-white"
+      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7f8ff_0%,#fff5f5_48%,#f1f3ff_100%)] text-[#0B1450] dark:bg-[linear-gradient(180deg,#030303_0%,#080808_50%,#030303_100%)] dark:text-white"
     >
       <div className="pointer-events-none absolute left-[-12vw] top-[20%] -z-10 h-[36vw] w-[36vw] rounded-full bg-[#7A1020]/10 blur-[90px] dark:bg-[#7A1020]/15" />
-      <div className="pointer-events-none absolute bottom-[20%] right-[-10vw] -z-10 h-[34vw] w-[34vw] rounded-full bg-[#2145D6]/10 blur-[90px] dark:bg-[#2145D6]/15" />
+      <div className="pointer-events-none absolute bottom-[20%] right-[-10vw] -z-10 h-[34vw] w-[34vw] rounded-full bg-[#2145D6]/10 blur-[90px] dark:bg-white/[0.045]" />
 
       <header className="mx-auto max-w-5xl px-5 pb-12 pt-24 text-center sm:px-8 sm:pb-16 sm:pt-28">
         <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
@@ -410,8 +410,8 @@ export function Projects() {
                   const Icon = item.icon;
                   const collapsedGradient =
                     index % 2 === 0
-                      ? "from-[#0B1450] via-[#172d93] to-[#2145D6]"
-                      : "from-[#4f0c18] via-[#7A1020] to-[#B51B32]";
+                      ? "from-[#0B1450] via-[#172d93] to-[#2145D6] dark:from-[#050505] dark:via-[#151515] dark:to-[#303030]"
+                      : "from-[#4f0c18] via-[#7A1020] to-[#B51B32] dark:from-[#050505] dark:via-[#370811] dark:to-[#8F1528]";
 
                   return (
                     <article
@@ -428,13 +428,13 @@ export function Projects() {
                       onPointerLeave={active ? resetPointer : undefined}
                       className={`project-accordion-panel relative h-[560px] min-h-[560px] overflow-hidden rounded-[1.65rem] border shadow-[0_32px_72px_-34px_rgba(11,20,80,.55)] sm:h-[520px] sm:min-h-[520px] ${
                         active
-                          ? "is-active project-feature-card border-[#0B1450]/10 bg-[linear-gradient(135deg,rgba(255,255,255,.97)_0%,rgba(238,242,255,.95)_52%,rgba(255,235,238,.93)_100%)] text-[#0B1450] dark:border-white/10 dark:bg-[linear-gradient(135deg,#090b12_0%,#101637_52%,#2a1018_100%)] dark:text-white"
+                          ? "is-active project-feature-card border-[#0B1450]/10 bg-[linear-gradient(135deg,rgba(255,255,255,.97)_0%,rgba(238,242,255,.95)_52%,rgba(255,235,238,.93)_100%)] text-[#0B1450] dark:border-white/10 dark:bg-[linear-gradient(135deg,#070707_0%,#111_54%,#26090f_100%)] dark:text-white"
                           : `is-collapsed border-white/10 bg-gradient-to-b ${collapsedGradient} text-white`
                       }`}
                     >
                       {active ? (
                         <>
-                          <span className="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(33,69,214,.2),transparent_66%)] dark:bg-[radial-gradient(circle,rgba(33,69,214,.42),transparent_66%)]" />
+                          <span className="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(33,69,214,.2),transparent_66%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,.09),transparent_66%)]" />
                           <span className="pointer-events-none absolute -bottom-36 -left-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(181,27,50,.18),transparent_66%)] dark:bg-[radial-gradient(circle,rgba(181,27,50,.38),transparent_66%)]" />
                           <span className="project-pointer-glow pointer-events-none absolute inset-0" />
                           <span className="project-animated-border pointer-events-none absolute inset-0 rounded-[inherit]" />
@@ -468,7 +468,7 @@ export function Projects() {
               <button type="button" onClick={previous} aria-label="Previous project" className="grid h-10 w-10 place-items-center rounded-full border border-[#0B1450]/10 bg-white/70 text-[#0B1450] shadow-sm transition hover:-translate-x-0.5 hover:border-[#B51B32]/25 hover:text-[#B51B32] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6] dark:border-white/10 dark:bg-white/[0.07] dark:text-white dark:hover:text-[#ef7180]">
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               </button>
-              <button type="button" onClick={next} aria-label="Next project" className="grid h-10 w-10 place-items-center rounded-full border border-[#0B1450]/10 bg-white/70 text-[#0B1450] shadow-sm transition hover:translate-x-0.5 hover:border-[#2145D6]/25 hover:text-[#2145D6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6] dark:border-white/10 dark:bg-white/[0.07] dark:text-white dark:hover:text-[#8290ff]">
+              <button type="button" onClick={next} aria-label="Next project" className="grid h-10 w-10 place-items-center rounded-full border border-[#0B1450]/10 bg-white/70 text-[#0B1450] shadow-sm transition hover:translate-x-0.5 hover:border-[#2145D6]/25 hover:text-[#2145D6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6] dark:border-white/10 dark:bg-white/[0.07] dark:text-white dark:hover:border-white/25 dark:hover:text-white dark:focus-visible:ring-white">
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
@@ -483,7 +483,7 @@ export function Projects() {
               {projectMarqueeItems.map((technology) => (
                 <span key={`${copy}-${technology}`} className="flex items-center text-lg font-black uppercase tracking-[-0.03em] sm:text-2xl lg:text-3xl">
                   {technology}
-                  <span className="mx-6 text-[#E5202F] dark:text-[#8290ff] sm:mx-8">{"\u2726"}</span>
+                  <span className="mx-6 text-[#E5202F] dark:text-white sm:mx-8">{"\u2726"}</span>
                 </span>
               ))}
             </div>

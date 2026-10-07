@@ -95,7 +95,7 @@ function StatGrid() {
               {value}
             </strong>
             <span
-              className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${accent === "text-[#B51B32]" ? "bg-[#B51B32]" : "bg-[#2145D6]"}`}
+              className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${accent === "text-[#B51B32]" ? "bg-[#B51B32]" : "bg-[#2145D6] dark:bg-white"}`}
             />
           </div>
           <span className="mt-2 block text-[11px] font-medium leading-[1.1rem] text-slate-500 dark:text-slate-400">
@@ -356,7 +356,7 @@ export function About() {
         <canvas
           ref={canvasRef}
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full transform-gpu contrast-[1.06] saturate-[1.05] [backface-visibility:hidden] dark:brightness-[0.78] dark:contrast-[1.08] dark:saturate-[0.9]"
+          className="pointer-events-none absolute inset-0 h-full w-full transform-gpu contrast-[1.06] saturate-[1.05] [backface-visibility:hidden] dark:grayscale dark:brightness-[0.7] dark:contrast-[1.14] dark:saturate-0"
         />
 
         <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(246,247,252,.98)_0%,rgba(246,247,252,.88)_18%,rgba(246,247,252,.38)_34%,rgba(246,247,252,0)_44%,rgba(246,247,252,0)_57%,rgba(246,247,252,.45)_69%,rgba(246,247,252,.92)_84%,rgba(246,247,252,.98)_100%)] dark:bg-[linear-gradient(90deg,rgba(8,8,9,.98)_0%,rgba(8,8,9,.9)_18%,rgba(8,8,9,.42)_34%,rgba(8,8,9,.04)_44%,rgba(8,8,9,.04)_57%,rgba(8,8,9,.48)_69%,rgba(8,8,9,.92)_84%,rgba(8,8,9,.98)_100%)] lg:block" />

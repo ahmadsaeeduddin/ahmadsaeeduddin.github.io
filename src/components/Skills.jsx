@@ -26,7 +26,7 @@ function SkillsNetwork() {
       aria-hidden="true"
       viewBox="0 0 1600 850"
       preserveAspectRatio="none"
-      className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+      className="pointer-events-none absolute inset-0 z-10 h-full w-full dark:grayscale"
       fill="none"
     >
       <defs>
@@ -73,7 +73,7 @@ function SkillsNetwork() {
 function HubMark() {
   return (
     <div className="absolute left-[58.75%] top-[50.5%] z-30 -translate-x-1/2 -translate-y-1/2">
-      <div className="relative grid h-40 w-40 place-items-center rounded-full border-[10px] border-white/85 bg-[radial-gradient(circle_at_35%_30%,#526cf4_0%,#17266d_42%,#67192d_75%,#b51b32_100%)] shadow-[0_24px_65px_-20px_rgba(11,20,80,.7),inset_0_0_34px_rgba(255,255,255,.24)] dark:border-white/15">
+      <div className="relative grid h-40 w-40 place-items-center rounded-full border-[10px] border-white/85 bg-[radial-gradient(circle_at_35%_30%,#526cf4_0%,#17266d_42%,#67192d_75%,#b51b32_100%)] shadow-[0_24px_65px_-20px_rgba(11,20,80,.7),inset_0_0_34px_rgba(255,255,255,.24)] dark:border-white/15 dark:bg-[radial-gradient(circle_at_35%_30%,#f4f4f4_0%,#555_24%,#111_58%,#7A1020_100%)]">
         <span className="absolute -inset-5 rounded-full border border-dashed border-[#0B1450]/25 dark:border-white/20" />
         <span className="absolute -inset-9 rounded-full border border-[#2145D6]/15 dark:border-white/10" />
         <svg aria-hidden="true" viewBox="0 0 70 70" className="h-20 w-20 overflow-visible">
@@ -92,13 +92,13 @@ function SkillCard({ group, compact = false }) {
   return (
     <article
       className={`${compact ? "relative" : `absolute ${group.className}`} ${group.shape} group z-20 border bg-white/[0.64] p-5 shadow-[0_22px_60px_-42px_rgba(11,20,80,.62)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.82] dark:bg-[#0b0b0d]/[0.76] dark:hover:bg-[#111114]/90 ${
-        isRed ? "border-[#B51B32]/40" : "border-[#2145D6]/40"
+        isRed ? "border-[#B51B32]/40" : "border-[#2145D6]/40 dark:border-white/25"
       }`}
     >
       <div className="flex items-start gap-4">
         <span
           className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border bg-white/75 shadow-[0_12px_30px_-22px_rgba(11,20,80,.65)] dark:bg-white/[0.06] ${
-            isRed ? "border-[#B51B32]/30 text-[#B51B32]" : "border-[#2145D6]/30 text-[#2145D6]"
+            isRed ? "border-[#B51B32]/30 text-[#B51B32]" : "border-[#2145D6]/30 text-[#2145D6] dark:border-white/20 dark:text-white"
           }`}
         >
           <Icon className="h-6 w-6" aria-hidden="true" />
@@ -170,7 +170,7 @@ export function Skills() {
         alt=""
         fill
         sizes="100vw"
-        className="pointer-events-none object-cover object-center opacity-50 saturate-[0.78] dark:opacity-[0.12]"
+        className="pointer-events-none object-cover object-center opacity-50 saturate-[0.78] dark:grayscale dark:opacity-[0.1] dark:contrast-125"
         aria-hidden="true"
       />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(245,246,252,.96)_0%,rgba(245,246,252,.66)_30%,rgba(245,246,252,.55)_70%,rgba(245,246,252,.82)_100%)] dark:bg-[linear-gradient(90deg,rgba(8,8,9,.98)_0%,rgba(8,8,9,.78)_40%,rgba(8,8,9,.7)_70%,rgba(8,8,9,.9)_100%)]" />

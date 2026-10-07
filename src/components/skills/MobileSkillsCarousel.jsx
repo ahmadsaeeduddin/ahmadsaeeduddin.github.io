@@ -19,20 +19,20 @@ function CarouselCard({ group, index, back = false }) {
     <article
       aria-hidden={back || undefined}
       className={`absolute inset-0 overflow-hidden rounded-[1.65rem] border bg-white/[0.82] p-5 shadow-[0_24px_55px_-24px_rgba(11,20,80,.55),inset_0_1px_0_rgba(255,255,255,.98)] backdrop-blur-2xl dark:bg-[#0b0b0d]/[0.9] dark:shadow-[0_24px_55px_-24px_rgba(0,0,0,.92),inset_0_1px_0_rgba(255,255,255,.08)] ${
-        isRed ? "border-[#B51B32]/40" : "border-[#2145D6]/40"
+        isRed ? "border-[#B51B32]/40" : "border-[#2145D6]/40 dark:border-white/25"
       }`}
       style={{ backfaceVisibility: "hidden" }}
     >
       <span
         aria-hidden="true"
         className={`absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent ${
-          isRed ? "via-[#B51B32]" : "via-[#2145D6]"
+          isRed ? "via-[#B51B32]" : "via-[#2145D6] dark:via-white"
         } to-transparent`}
       />
       <span
         aria-hidden="true"
         className={`absolute -right-12 -top-12 h-32 w-32 rounded-full blur-3xl ${
-          isRed ? "bg-[#B51B32]/15" : "bg-[#2145D6]/15"
+          isRed ? "bg-[#B51B32]/15" : "bg-[#2145D6]/15 dark:bg-white/[0.06]"
         }`}
       />
 
@@ -41,7 +41,7 @@ function CarouselCard({ group, index, back = false }) {
           className={`grid h-14 w-14 place-items-center rounded-2xl border bg-white/80 shadow-[0_12px_30px_-20px_rgba(11,20,80,.7)] dark:bg-white/[0.07] ${
             isRed
               ? "border-[#B51B32]/30 text-[#B51B32]"
-              : "border-[#2145D6]/30 text-[#2145D6]"
+              : "border-[#2145D6]/30 text-[#2145D6] dark:border-white/20 dark:text-white"
           }`}
         >
           <Icon className="h-6 w-6" aria-hidden="true" />
@@ -65,7 +65,7 @@ function CarouselCard({ group, index, back = false }) {
             className={`rounded-full border px-2.5 py-1 text-[9px] font-bold ${
               isRed
                 ? "border-[#B51B32]/10 bg-[#B51B32]/[0.06] text-[#7A1020] dark:text-[#ef9aa3]"
-                : "border-[#2145D6]/10 bg-[#2145D6]/[0.06] text-[#263b9f] dark:text-[#9eabff]"
+                : "border-[#2145D6]/10 bg-[#2145D6]/[0.06] text-[#263b9f] dark:border-white/10 dark:bg-white/[0.06] dark:text-white/75"
             }`}
           >
             {skill}
