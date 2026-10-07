@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { BrainCircuit, Code2, Plane, Search } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextRepel } from "@/components/motion/TextRepel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -373,7 +374,7 @@ export function About() {
               About me
             </p>
             <h2 data-motion-heading className="mt-5 text-balance text-[clamp(2.65rem,4vw,4.6rem)] font-black leading-[0.92] tracking-[-0.06em] text-[#080d35] dark:text-white">
-              Tingling with questions.
+              <TextRepel text="Tingling with questions." accentLastCharacter />
             </h2>
 
             <div className="mt-5 space-y-3 text-[17px] leading-6 text-slate-600 dark:text-slate-300 sm:text-sm">

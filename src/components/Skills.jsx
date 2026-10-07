@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import MobileSkillsCarousel from "./skills/MobileSkillsCarousel";
 import { skillGroups } from "./skills/skillsData";
+import { TextRepel } from "@/components/motion/TextRepel";
 
 const networkNodes = [
   [555, 128, "#2145D6"],
@@ -134,9 +135,7 @@ function SectionIntro() {
         <span className="ml-2 h-1.5 w-1.5 self-center rounded-full bg-[#B51B32]" />
       </p>
       <h2 data-motion-heading className="mt-6 text-[clamp(3rem,4vw,4.5rem)] font-black leading-[0.92] tracking-[-0.065em] text-[#080d35] dark:text-white">
-        Tools for
-        <br />
-        Bigger Ideas<span className="text-[#B51B32]">.</span>
+        <TextRepel text={"Tools for\nBigger Ideas."} accentLastCharacter />
       </h2>
       <p className="mt-5 max-w-[20rem] text-sm leading-6 text-slate-600 dark:text-slate-300">
         A carefully curated toolkit for building intelligent systems, from quick prototypes to dependable production-ready solutions.

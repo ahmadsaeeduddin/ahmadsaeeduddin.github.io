@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { BriefcaseBusiness, Calendar, MapPin, Sparkles } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextRepel } from "@/components/motion/TextRepel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -290,14 +291,14 @@ export function Experience() {
         <div className="pointer-events-none absolute inset-0 opacity-50 dark:opacity-20 [background-image:radial-gradient(circle_at_18%_24%,rgba(33,69,214,.16),transparent_25%),radial-gradient(circle_at_84%_72%,rgba(181,27,50,.14),transparent_28%)]" />
         <header className="absolute inset-x-5 top-[5.5%] z-20 mx-auto flex max-w-[70rem] items-end justify-between gap-5 motion-reduce:relative motion-reduce:inset-auto motion-reduce:mb-10 sm:top-[6.5%]">
           <div>
-            <p className="text-[9px] font-black uppercase tracking-[0.34em] text-[#B51B32] dark:text-[#ef7b88]">
-              Experience · the story so far
+            <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
+              Experience
             </p>
             <h2
               data-motion-heading
-              className="mt-2 text-[clamp(2.6rem,6vw,5.6rem)] font-black leading-[0.86] tracking-[-0.065em]"
+              className="mt-5 text-balance text-[clamp(2.65rem,4vw,4.6rem)] font-black leading-[0.92] tracking-[-0.06em]"
             >
-              Every role left a mark<span className="text-[#B51B32]">.</span>
+              <TextRepel text="Every role left a mark." accentLastCharacter />
             </h2>
           </div>
           <span className="hidden max-w-[13rem] text-right font-mono text-[9px] font-bold uppercase leading-4 tracking-[0.16em] text-[#0B1450]/45 dark:text-white/40 sm:block">

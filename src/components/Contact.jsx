@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { TextRepel } from "@/components/motion/TextRepel";
 
 const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyKCEWaU4S6eHqW-67ijKDbRBIRy3Zx7Qs0h6An0ODV38SJwYEWV4W-g_RjcL5ftnR22g/exec"; // <-- replace
 
@@ -80,7 +81,9 @@ export function Contact() {
     <section id="contact" className="py-20 bg-accent/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 data-motion-heading className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 data-motion-heading className="text-3xl md:text-4xl font-bold mb-4">
+            <TextRepel text="Get In Touch" />
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.
           </p>

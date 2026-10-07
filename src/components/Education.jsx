@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BookOpen, Calendar, ChevronDown, GraduationCap, Info, MapPin } from "lucide-react";
+import { TextRepel } from "@/components/motion/TextRepel";
 
 const educationData = [
   {
@@ -368,7 +369,7 @@ export function Education() {
             Education
           </p>
           <h2 data-motion-heading className="mx-auto mt-4 max-w-3xl text-balance text-[clamp(2.35rem,4.5vw,4.4rem)] font-black leading-[0.98] tracking-[-0.06em] text-[#080d35] dark:text-white lg:mt-3 lg:text-[3.35rem]">
-            See how far it goes<span className="text-[#B51B32]">.</span>
+            <TextRepel text="See how far it goes." accentLastCharacter />
           </h2>
         </header>
 
