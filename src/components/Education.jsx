@@ -29,10 +29,14 @@ const educationData = [
       "Probability & Stats",
     ],
     additionalInformation: [
-      "Focused on artificial intelligence, intelligent systems, and applied machine learning.",
-      "Built practical experience across full-stack development, databases, and computer systems.",
-      "Expected graduation: June 2026.",
-    ],
+      "Part of FAST's Arts, Culinary and Athletic community; while spending most of my time building, experimenting, and competing.",
+    "I like starting my day with a little sport, good friends, and probably more competition than necessary.",
+    "Always up for a random adventure, a late-night plan, or a trip that started with 'why not?'",
+    "Big believer in having something exciting to look forward to; whether that's a project, a game, or a weekend escape.",
+    "Most good ideas somehow happen somewhere between a long conversation, a little there and there, and way too much coffee.",
+    "Graduated from FAST in 2026 <3 one hell of a chapter.",
+    ]
+
   },
   {
     number: "02",
@@ -43,6 +47,8 @@ const educationData = [
     location: "Islamabad, Pakistan",
     coursework: ["Mathematics", "Physics", "Computer Science"],
     additionalInformation: [
+      "Joined Table Tennis Team and represented College campus in Inter-College competitions.",
+      "Participated in 16 week long Robotics Bootcamp.",
       "Built a strong foundation in analytical thinking, mathematics, and computing fundamentals.",
       "Developed the academic base that led to further study in computer science and AI.",
       "Completed in July 2022.",
