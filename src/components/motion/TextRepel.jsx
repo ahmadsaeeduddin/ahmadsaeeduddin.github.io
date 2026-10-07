@@ -110,11 +110,11 @@ export function TextRepel({
     };
   }, [damping, mass, mode, radius, stiffness, strength, text]);
 
-  const characters = Array.from(text);
-  const lastVisibleIndex = characters.reduce(
-    (lastIndex, character, index) => (character.trim() ? index : lastIndex),
-    -1
-  );
+  const tokens = text.split(/(\n|\s+)/).filter(Boolean);
+  const visibleCharacterCount = Array.from(text).filter(
+    (character) => !/\s/.test(character)
+  ).length;
+  let visibleCharacterIndex = 0;
 
   return (
     <span
@@ -123,22 +123,45 @@ export function TextRepel({
       className={cn("inline cursor-default select-none", className)}
       aria-label={text.replace(/\n/g, " ")}
     >
-      {characters.map((character, index) => {
-        if (character === "\n") return <br key={`break-${index}`} />;
-        if (character === " ") return <span key={`space-${index}`}> </span>;
+      {tokens.map((token, tokenIndex) => {
+        if (token === "\n") {
+          return <br key={`break-${tokenIndex}`} aria-hidden="true" />;
+        }
+
+        if (/^\s+$/.test(token)) {
+          return (
+            <span key={`space-${tokenIndex}`} aria-hidden="true">
+              {token}
+            </span>
+          );
+        }
 
         return (
           <span
-            key={`${character}-${index}`}
-            data-repel-letter
+            key={`${token}-${tokenIndex}`}
+            className="inline-block whitespace-nowrap"
             aria-hidden="true"
-            className={cn(
-              "inline-block whitespace-pre will-change-transform",
-              letterClassName,
-              accentLastCharacter && index === lastVisibleIndex && accentClassName
-            )}
           >
-            {character}
+            {Array.from(token).map((character, characterIndex) => {
+              const currentVisibleIndex = visibleCharacterIndex;
+              visibleCharacterIndex += 1;
+
+              return (
+                <span
+                  key={`${character}-${characterIndex}`}
+                  data-repel-letter
+                  className={cn(
+                    "inline-block whitespace-pre will-change-transform",
+                    letterClassName,
+                    accentLastCharacter &&
+                      currentVisibleIndex === visibleCharacterCount - 1 &&
+                      accentClassName
+                  )}
+                >
+                  {character}
+                </span>
+              );
+            })}
           </span>
         );
       })}
