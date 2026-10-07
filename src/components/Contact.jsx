@@ -80,7 +80,7 @@ export function Contact() {
     <section id="contact" className="py-20 bg-accent/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 data-motion-heading className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.
           </p>
@@ -98,7 +98,7 @@ export function Contact() {
 
             {/* Contact Details */}
             <div className="space-y-6">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card data-web-land="contact-card" className="hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
                     <div className="hero-gradient p-3 rounded-lg">
@@ -173,7 +173,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <Card className="border-2">
+          <Card data-web-land="contact-form" className="border-2">
             <CardContent className="p-8">
               <h3 className="text-xl font-bold mb-6">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">

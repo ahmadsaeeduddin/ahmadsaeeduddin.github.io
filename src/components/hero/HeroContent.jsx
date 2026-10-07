@@ -11,20 +11,20 @@ export function HeroContent() {
         data-hero-role
         className="mb-2 text-[11px] font-bold uppercase tracking-[0.34em] text-[#0B1450] dark:text-slate-300 sm:text-xs"
       >
-        AI Engineer
+        AI Engineer | Software Engineer | Rabbit-Hole Diver
       </p>
       <h1 className="text-balance text-2xl font-semibold tracking-[-0.035em] text-slate-950 dark:text-white sm:text-3xl lg:text-[2.15rem]">
-        Building intelligent systems that move ideas forward.
+        AI that does things, not just demos.
       </h1>
       <p className="mx-auto mt-2 max-w-xl text-pretty text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
-        I design practical AI products, agentic workflows, and computer-vision experiences that turn ambitious problems into useful software.
+        I swing along AI agents, vision systems, and products that make it out of the notebook/GPT Chats and into the real world.
       </p>
       <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
         <Button
           asChild
           className="h-10 rounded-full bg-[#0B1450] px-5 text-sm text-white shadow-[0_12px_30px_-12px_rgba(15,23,42,0.65)] hover:bg-[#7A1020] dark:bg-[#741827] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)] dark:hover:bg-[#8F2433]"
         >
-          <a href="#projects">View My Work</a>
+          <a href="#projects">See What I've Built</a>
         </Button>
         <Button
           asChild

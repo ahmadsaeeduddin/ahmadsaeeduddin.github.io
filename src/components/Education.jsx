@@ -198,9 +198,9 @@ function EducationBridgeWeb() {
 
 function EducationNode({ number }) {
   return (
-    <div className="relative z-20 mx-auto grid h-28 w-28 place-items-center rounded-full p-[0.62rem] shadow-[0_24px_50px_-25px_rgba(11,20,80,.75)] sm:h-32 sm:w-32" style={{ background: "conic-gradient(from 205deg, #0B1450 0deg, #2145D6 112deg, #7A1020 235deg, #0B1450 360deg)" }}>
+    <div className="relative z-20 mx-auto grid h-28 w-28 place-items-center rounded-full p-[0.62rem] shadow-[0_24px_50px_-25px_rgba(11,20,80,.75)] sm:h-32 sm:w-32 lg:h-28 lg:w-28" style={{ background: "conic-gradient(from 205deg, #0B1450 0deg, #2145D6 112deg, #7A1020 235deg, #0B1450 360deg)" }}>
       <div className="grid h-full w-full place-items-center rounded-full border border-white/85 bg-[#FAFAFF]/95 shadow-[inset_0_0_28px_rgba(11,20,80,.1)] dark:border-white/15 dark:bg-[#111113]">
-        <GraduationCap className="h-11 w-11 text-[#0B1450] dark:text-white" aria-hidden="true" />
+        <GraduationCap className="h-11 w-11 text-[#0B1450] dark:text-white lg:h-9 lg:w-9" aria-hidden="true" />
       </div>
       <span className="absolute -right-2 -top-5 rounded-lg border border-[#7A1020]/35 bg-white/95 px-2.5 py-1.5 text-xs font-black text-[#0B1450] shadow-[0_8px_20px_-12px_rgba(122,16,32,.5)] dark:bg-[#111113] dark:text-white">
         {number}
@@ -218,14 +218,14 @@ function ExpandablePanel({ id, title, icon: Icon, open, onToggle, preview, child
         onClick={onToggle}
         aria-expanded={open}
         aria-controls={id}
-        className="flex w-full items-center gap-2 px-4 py-3 text-left text-xs font-bold text-[#0B1450] transition-colors hover:text-[#7A1020] dark:text-white dark:hover:text-[#e16a78] sm:text-sm"
+        className="flex w-full items-center gap-2 px-4 py-3 text-left text-xs font-bold text-[#0B1450] transition-colors hover:text-[#7A1020] dark:text-white dark:hover:text-[#e16a78] sm:text-sm lg:py-2.5"
       >
         <Icon className="h-4 w-4 text-[#2145D6] dark:text-[#a9b1ff]" aria-hidden="true" />
         <span>{title}</span>
         <ChevronDown className={`ml-auto h-4 w-4 transition-transform duration-300 ${open ? "rotate-180" : "rotate-0"}`} aria-hidden="true" />
       </button>
       {!open && preview ? (
-        <div className="border-t border-[#0B1450]/[0.08] px-4 pb-3 pt-2.5 dark:border-white/10">
+        <div className="border-t border-[#0B1450]/[0.08] px-4 pb-3 pt-2.5 dark:border-white/10 lg:pb-2.5 lg:pt-2">
           {preview}
         </div>
       ) : null}
@@ -236,7 +236,7 @@ function ExpandablePanel({ id, title, icon: Icon, open, onToggle, preview, child
         }`}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-[#0B1450]/[0.08] px-4 pb-4 pt-3 dark:border-white/10">
+          <div className="border-t border-[#0B1450]/[0.08] px-4 pb-4 pt-3 dark:border-white/10 lg:pb-3 lg:pt-2.5">
             {children}
           </div>
         </div>
@@ -256,10 +256,11 @@ function EducationCard({ education, index }) {
 
   return (
     <article
-      className={`relative grid min-w-0 items-center gap-5 lg:w-[86%] lg:gap-7 ${
+      data-web-land={`education-${index}`}
+      className={`relative grid min-w-0 items-center gap-5 lg:w-[84%] lg:gap-5 ${
         index === 0
-          ? "lg:ml-auto lg:grid-cols-[8rem_minmax(0,1fr)]"
-          : "lg:mr-auto lg:grid-cols-[8rem_minmax(0,1fr)]"
+          ? "lg:ml-auto lg:grid-cols-[7rem_minmax(0,1fr)]"
+          : "lg:mr-auto lg:grid-cols-[7rem_minmax(0,1fr)]"
       }`}
     >
       <NodeWeb index={index} />
@@ -267,7 +268,7 @@ function EducationCard({ education, index }) {
         <EducationNode number={education.number} />
       </div>
 
-      <div className="relative z-10 flex flex-col rounded-[2rem] border border-white/90 bg-white/[0.72] p-5 shadow-[0_30px_80px_-46px_rgba(11,20,80,.5),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-[#2145D6]/20 dark:border-white/10 dark:bg-[#0d0d0f]/[0.84] dark:shadow-[0_30px_80px_-46px_rgba(0,0,0,.92)] sm:p-7 lg:order-2">
+      <div className="relative z-10 flex flex-col rounded-[2rem] border border-white/90 bg-white/[0.72] p-5 shadow-[0_30px_80px_-46px_rgba(11,20,80,.5),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-[#2145D6]/20 dark:border-white/10 dark:bg-[#0d0d0f]/[0.84] dark:shadow-[0_30px_80px_-46px_rgba(0,0,0,.92)] sm:p-7 lg:order-2 lg:p-5">
         <span className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-[#0B1450]/45 to-transparent dark:via-white/20" />
 
         <div>
@@ -277,14 +278,14 @@ function EducationCard({ education, index }) {
             <span className="h-1.5 w-1.5 rounded-full bg-[#7A1020]" />
           </div>
 
-          <h3 className="mt-3 text-xl font-black tracking-[-0.035em] text-[#080d35] dark:text-white sm:text-2xl">
+          <h3 className="mt-3 text-xl font-black tracking-[-0.035em] text-[#080d35] dark:text-white sm:text-2xl lg:mt-2 lg:text-xl">
             {education.degree}
           </h3>
           <p className="mt-1 text-sm font-semibold leading-5 text-[#2145D6] dark:text-[#a9b1ff]">
             {education.institution}
           </p>
 
-          <div className="mt-4 grid gap-2 text-xs text-slate-500 dark:text-slate-400 sm:grid-cols-2">
+          <div className="mt-4 grid gap-2 text-xs text-slate-500 dark:text-slate-400 sm:grid-cols-2 lg:mt-3">
             <span className="flex items-start gap-2">
               <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-[#0B1450]/65 dark:text-white/60" aria-hidden="true" />
               {education.dates}
@@ -296,7 +297,7 @@ function EducationCard({ education, index }) {
           </div>
         </div>
 
-        <div className="grid gap-3 pt-5">
+        <div className="grid gap-3 pt-5 lg:gap-2.5 lg:pt-3.5">
           <ExpandablePanel
             id={courseworkId}
             title={`Relevant Coursework (${education.coursework.length})`}
@@ -357,21 +358,21 @@ export function Education() {
   return (
     <section
       id="education"
-      className="relative min-h-[100svh] overflow-hidden bg-[#F6F7FC] pb-28 pt-16 text-[#0B1450] dark:bg-[#080809] dark:text-white sm:pt-20"
+      className="relative min-h-[100svh] overflow-hidden bg-[#F6F7FC] pb-28 pt-16 text-[#0B1450] dark:bg-[#080809] dark:text-white sm:pt-20 lg:pb-16 lg:pt-10"
     >
       <EducationWeb />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-xs font-black uppercase tracking-[0.38em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
+          <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-xs font-black uppercase tracking-[0.38em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78] lg:py-1.5 lg:text-[10px]">
             Education
           </p>
-          <h2 className="mx-auto mt-4 max-w-3xl text-balance text-[clamp(2.35rem,4.5vw,4.4rem)] font-black leading-[0.98] tracking-[-0.06em] text-[#080d35] dark:text-white">
+          <h2 data-motion-heading className="mx-auto mt-4 max-w-3xl text-balance text-[clamp(2.35rem,4.5vw,4.4rem)] font-black leading-[0.98] tracking-[-0.06em] text-[#080d35] dark:text-white lg:mt-3 lg:text-[3.35rem]">
             See how far it goes<span className="text-[#B51B32]">.</span>
           </h2>
         </header>
 
-        <div className="relative mt-12 grid items-start gap-16 lg:gap-20">
+        <div className="relative mt-12 grid items-start gap-16 lg:mt-7 lg:gap-9">
           <EducationBridgeWeb />
           {educationData.map((education, index) => (
             <EducationCard

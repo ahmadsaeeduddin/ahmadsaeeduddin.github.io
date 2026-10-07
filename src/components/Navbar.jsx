@@ -1,20 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
-  ChevronDown,
-  ChevronUp,
   Folder,
   GraduationCap,
   Home,
   Layers3,
+  Menu,
   MessageCircle,
   UserRound,
+  X,
 } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
+import SpiderMenuAnimation from "./navigation/SpiderMenuAnimation";
 
 const navItems = [
   { name: "Home", href: "#home", icon: Home },
@@ -62,9 +63,11 @@ function SparkBurst() {
 }
 
 export function Navbar() {
-  const [panelOpen, setPanelOpen] = useState(true);
+  const [compactMenuOpen, setCompactMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("#home");
   const [heroNavigationVisible, setHeroNavigationVisible] = useState(true);
+  const compactMenuButtonRef = useRef(null);
+  const compactMenuPanelRef = useRef(null);
 
   useEffect(() => {
     const sections = navItems
@@ -91,7 +94,9 @@ export function Navbar() {
       if (!hero) return;
 
       const bounds = hero.getBoundingClientRect();
-      const heroIsActive = bounds.bottom > window.innerHeight * 0.45 && bounds.top < window.innerHeight * 0.45;
+      const heroIsActive =
+        bounds.bottom > window.innerHeight * 0.08 &&
+        bounds.top < window.innerHeight * 0.45;
       setHeroNavigationVisible(heroIsActive);
     };
 
@@ -111,23 +116,46 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!heroNavigationVisible) setPanelOpen(true);
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setCompactMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (heroNavigationVisible && window.innerWidth >= 1024) {
+      setCompactMenuOpen(false);
+    }
   }, [heroNavigationVisible]);
+
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("spider-menu-toggle", {
+        detail: { open: compactMenuOpen },
+      })
+    );
+  }, [compactMenuOpen]);
 
   const navigateToSection = (event, href) => {
     const target = document.querySelector(href);
     if (!target) return;
 
     event.preventDefault();
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - 24;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - 0;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     window.history.pushState(null, "", href);
     setActiveHref(href);
+    setCompactMenuOpen(false);
     window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? "auto" : "smooth" });
   };
 
-  const dockVisible = !heroNavigationVisible && panelOpen;
+  const activeItem = navItems.find((item) => item.href === activeHref) ?? navItems[0];
+  const ActiveIcon = activeItem.icon;
 
   return (
     <nav
@@ -136,7 +164,170 @@ export function Navbar() {
       className="pointer-events-none fixed inset-0 z-50"
     >
       <div
-        className={`pointer-events-auto absolute left-1/2 top-3 flex w-[min(80rem,calc(100vw-1.5rem))] -translate-x-1/2 items-center justify-between rounded-[1.7rem] border border-[#0B1450]/15 bg-white/[0.68] px-4 py-2 shadow-[0_18px_58px_-30px_rgba(11,20,80,.46),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-3xl backdrop-saturate-150 transition-[transform,opacity] duration-500 ease-out motion-reduce:transition-none dark:border-white/10 dark:bg-[#09090a]/82 dark:shadow-[0_18px_58px_-30px_rgba(0,0,0,.92),inset_0_1px_0_rgba(255,255,255,.06)] sm:px-6 ${
+        className={`pointer-events-auto absolute right-3 top-3 z-40 transition-[transform,opacity] duration-500 ease-out ${
+          heroNavigationVisible
+            ? "lg:pointer-events-none lg:-translate-y-5 lg:opacity-0"
+            : "lg:translate-y-0 lg:opacity-100"
+        }`}
+      >
+        {compactMenuOpen ? (
+          <button
+            type="button"
+            aria-label="Close navigation"
+            className="fixed inset-0 z-[-1] cursor-default bg-[#0B1450]/[0.08] backdrop-blur-[2px] dark:bg-black/25"
+            onClick={() => setCompactMenuOpen(false)}
+          />
+        ) : null}
+
+        <button
+          ref={compactMenuButtonRef}
+          type="button"
+          aria-expanded={compactMenuOpen}
+          aria-controls="mobile-navigation-panel"
+          onClick={() => setCompactMenuOpen((open) => !open)}
+          className={`group relative flex h-12 items-center overflow-hidden rounded-full border bg-white/[0.82] p-1.5 text-[#0B1450] shadow-[0_16px_45px_-18px_rgba(11,20,80,.62),inset_0_1px_0_rgba(255,255,255,.98)] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 dark:bg-[#0b0b0d]/90 dark:text-white dark:shadow-[0_16px_45px_-18px_rgba(0,0,0,.95),inset_0_1px_0_rgba(255,255,255,.09)] ${
+            compactMenuOpen
+              ? "w-12 border-[#B51B32]/35"
+              : "w-[9.6rem] border-[#2145D6]/25"
+          }`}
+        >
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2145D6]/[0.08] via-transparent to-[#B51B32]/[0.08]" />
+          <span
+            className={`relative grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br text-white shadow-[0_8px_20px_-8px_rgba(33,69,214,.72)] transition-all duration-300 ${
+              compactMenuOpen
+                ? "from-[#7A1020] to-[#B51B32]"
+                : "from-[#0B1450] to-[#2145D6]"
+            }`}
+          >
+            {compactMenuOpen ? (
+              <X className="h-[1.1rem] w-[1.1rem]" aria-hidden="true" />
+            ) : (
+              <ActiveIcon className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+            )}
+          </span>
+          <span
+            className={`relative ml-2 min-w-0 flex-1 text-left transition-all duration-200 ${
+              compactMenuOpen ? "pointer-events-none -translate-x-2 opacity-0" : "opacity-100"
+            }`}
+          >
+            <span className="block truncate text-[8px] font-black uppercase tracking-[0.22em] text-[#7A1020] dark:text-[#ef7b88]">
+              Navigate
+            </span>
+            <span className="block truncate text-xs font-extrabold tracking-[-0.01em]">
+              {activeItem.name}
+            </span>
+          </span>
+          <Menu
+            className={`relative mr-2 h-4 w-4 shrink-0 transition-all duration-200 ${
+              compactMenuOpen ? "scale-50 opacity-0" : "opacity-100"
+            }`}
+            aria-hidden="true"
+          />
+        </button>
+
+        <div
+          ref={compactMenuPanelRef}
+          id="mobile-navigation-panel"
+          className={`absolute right-0 top-14 max-h-[calc(100svh-5rem)] w-[min(20rem,calc(100vw-3.5rem))] origin-top-right overflow-y-auto rounded-[1.8rem] bg-gradient-to-br from-[#2145D6]/45 via-white/80 to-[#B51B32]/45 p-px shadow-[0_30px_80px_-26px_rgba(11,20,80,.72)] transition-[transform,opacity,visibility] duration-300 ease-out dark:via-white/15 dark:shadow-[0_30px_80px_-24px_rgba(0,0,0,.95)] ${
+            compactMenuOpen
+              ? "visible translate-y-0 scale-100 opacity-100"
+              : "invisible -translate-y-3 scale-[0.96] opacity-0"
+          }`}
+        >
+          <div className="relative overflow-hidden rounded-[calc(1.8rem-1px)] bg-white/[0.9] p-4 backdrop-blur-3xl dark:bg-[#0b0b0d]/95">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 360 210"
+              className="pointer-events-none absolute inset-x-0 top-0 h-52 w-full opacity-[0.16] dark:opacity-[0.12]"
+              fill="none"
+            >
+              <path d="M370 5C276 20 245 67 228 143C211 202 134 195 78 226" stroke="#2145D6" />
+              <path d="M350 -8C315 57 277 88 196 94C116 100 92 150 62 218" stroke="#B51B32" />
+              <path d="M363 51C294 74 260 118 274 200" stroke="#0B1450" strokeDasharray="4 7" />
+              <circle cx="228" cy="143" r="3" fill="#2145D6" />
+              <circle cx="196" cy="94" r="3" fill="#B51B32" />
+              <circle cx="274" cy="199" r="2.5" fill="#0B1450" />
+            </svg>
+
+            <div className="relative flex items-center justify-between border-b border-[#0B1450]/10 pb-3 dark:border-white/10">
+              <a
+                href="#home"
+                onClick={(event) => navigateToSection(event, "#home")}
+                className="flex items-center gap-2"
+              >
+                <OrbitMark />
+                <span>
+                  <span className="block text-sm font-black uppercase tracking-[0.26em] text-[#0B1450] dark:text-white">
+                    <span className="text-[#B51B32]">.</span>
+                  </span>
+                  <span className="block text-[8px] font-bold uppercase tracking-[0.24em] text-slate-400">
+                    AI Engineer
+                  </span>
+                </span>
+              </a>
+              <ThemeToggle />
+            </div>
+
+            <div className="relative mt-3 grid gap-1.5">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const active = activeHref === item.href;
+
+                return (
+                  <a
+                    key={`mobile-${item.name}`}
+                    href={item.href}
+                    onClick={(event) => navigateToSection(event, item.href)}
+                    className={`group flex items-center gap-3 rounded-2xl border px-3 py-2 transition-all duration-200 ${
+                      active
+                        ? "border-[#2145D6]/20 bg-gradient-to-r from-[#2145D6]/10 to-[#B51B32]/[0.06] text-[#0B1450] shadow-[0_10px_24px_-20px_rgba(33,69,214,.7)] dark:border-white/12 dark:text-white"
+                        : "border-transparent text-slate-500 hover:border-[#B51B32]/15 hover:bg-white/70 hover:text-[#B51B32] dark:text-slate-300 dark:hover:bg-white/[0.06] dark:hover:text-[#ef7b88]"
+                    }`}
+                  >
+                    <span
+                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl border transition-colors ${
+                        active
+                          ? "border-[#2145D6]/25 bg-white text-[#2145D6] dark:border-white/15 dark:bg-white/10 dark:text-white"
+                          : "border-[#0B1450]/10 bg-white/60 text-[#0B1450]/75 dark:border-white/10 dark:bg-white/[0.045] dark:text-slate-300"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="flex-1 text-sm font-bold">{item.name}</span>
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full transition-all ${
+                        active
+                          ? "bg-[#B51B32] shadow-[0_0_8px_2px_rgba(181,27,50,.3)]"
+                          : "scale-50 bg-[#2145D6]/30 group-hover:scale-100 group-hover:bg-[#B51B32]"
+                      }`}
+                    />
+                  </a>
+                );
+              })}
+            </div>
+
+            <a
+              href="#contact"
+              onClick={(event) => navigateToSection(event, "#contact")}
+              className="relative mt-3 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-[#0B1450] via-[#2145D6] to-[#7A1020] text-sm font-extrabold text-white shadow-[0_14px_28px_-14px_rgba(33,69,214,.8)]"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              Let&apos;s Talk
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <SpiderMenuAnimation
+        active={compactMenuOpen}
+        anchorRef={compactMenuButtonRef}
+        targetRef={compactMenuPanelRef}
+      />
+
+      <div
+        data-main-navbar
+        className={`pointer-events-auto absolute left-1/2 top-3 hidden w-[min(80rem,calc(100vw-1.5rem))] -translate-x-1/2 items-center justify-between rounded-[1.7rem] border border-[#0B1450]/15 bg-white/[0.68] px-4 py-2 shadow-[0_18px_58px_-30px_rgba(11,20,80,.46),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-3xl backdrop-saturate-150 transition-[transform,opacity] duration-500 ease-out motion-reduce:transition-none dark:border-white/10 dark:bg-[#09090a]/82 dark:shadow-[0_18px_58px_-30px_rgba(0,0,0,.92),inset_0_1px_0_rgba(255,255,255,.06)] sm:px-6 lg:flex ${
           heroNavigationVisible
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-[calc(100%+2rem)] opacity-0"
@@ -150,7 +341,7 @@ export function Navbar() {
         >
           <OrbitMark />
           <span className="text-sm font-black uppercase tracking-[0.3em] transition-colors group-hover/brand:text-[#7A1020] sm:text-[15px]">
-            Saeed<span className="text-[#7A1020]">.</span>
+            <span className="text-[#7A1020]">.</span>
           </span>
         </a>
 
@@ -191,95 +382,6 @@ export function Navbar() {
         </div>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setPanelOpen((open) => !open)}
-        aria-expanded={panelOpen}
-        aria-controls="bottom-navigation-dock"
-        aria-label={panelOpen ? "Hide navigation" : "Show navigation"}
-        tabIndex={heroNavigationVisible ? -1 : 0}
-        className={`absolute left-1/2 z-20 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full border border-[#0B1450]/15 bg-white/75 text-[#0B1450] shadow-[0_12px_32px_-15px_rgba(11,20,80,.5)] backdrop-blur-2xl transition-[bottom,color,background-color,transform,opacity] duration-500 ease-out hover:scale-105 hover:border-[#B51B32]/30 hover:text-[#B51B32] motion-reduce:transition-none dark:border-white/12 dark:bg-[#0b0b0c]/82 dark:text-white dark:hover:text-[#d65a68] ${
-          heroNavigationVisible ? "pointer-events-none translate-y-5 opacity-0" : "pointer-events-auto translate-y-0 opacity-100"
-        }`}
-        style={{ bottom: panelOpen ? "4.85rem" : "0.8rem" }}
-      >
-        {panelOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
-      </button>
-
-      <div
-        id="bottom-navigation-dock"
-        className={`pointer-events-auto absolute bottom-0 left-1/2 flex w-[min(58rem,100vw)] items-center gap-1.5 overflow-visible rounded-b-none rounded-t-[1.65rem] border border-b-0 border-[#0B1450]/15 bg-white/[0.68] p-1.5 shadow-[0_22px_65px_-28px_rgba(11,20,80,.5),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-3xl backdrop-saturate-150 transition-[transform,opacity] duration-500 ease-out motion-reduce:transition-none dark:border-white/10 dark:border-b-0 dark:bg-[#09090a]/86 dark:shadow-[0_22px_65px_-28px_rgba(0,0,0,.92),inset_0_1px_0_rgba(255,255,255,.06)] ${
-          dockVisible
-            ? "-translate-x-1/2 translate-y-0 opacity-100"
-            : "-translate-x-1/2 translate-y-[calc(100%+2rem)] opacity-0"
-        }`}
-      >
-        <div className="relative flex min-w-0 flex-1 items-center justify-around gap-1 overflow-x-auto px-1 sm:gap-2 sm:px-2">
-          <span className="pointer-events-none absolute left-7 right-7 top-[1.17rem] h-px bg-gradient-to-r from-transparent via-[#0B1450]/20 to-transparent dark:via-white/15" />
-
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const active = activeHref === item.href;
-
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(event) => navigateToSection(event, item.href)}
-                className="group/navitem relative z-10 flex min-w-[2.65rem] flex-col items-center gap-0.5 rounded-xl px-0.5 py-0.5 text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-[#B51B32] dark:text-slate-300 dark:hover:text-[#d65a68] sm:min-w-[4.35rem] sm:px-1"
-              >
-                <span
-                  className={`grid h-9 w-9 place-items-center rounded-[0.7rem] border backdrop-blur-xl transition-all duration-300 group-hover/navitem:border-[#B51B32]/35 group-hover/navitem:text-[#B51B32] ${
-                    active
-                      ? "border-[#2145D6]/55 bg-white/90 text-[#2145D6] shadow-[0_8px_22px_-10px_rgba(33,69,214,.65)] dark:border-white/30 dark:bg-white/10 dark:text-white"
-                      : "border-white/75 bg-white/50 text-[#0B1450]/80 shadow-[0_8px_20px_-14px_rgba(11,20,80,.38)] dark:border-white/10 dark:bg-white/[0.045] dark:text-slate-300"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <span
-                  className={`hidden text-[9px] leading-none sm:block ${
-                    active ? "font-extrabold text-[#0B1450] dark:text-white" : "font-semibold"
-                  }`}
-                >
-                  {item.name}
-                </span>
-                <span
-                  className={`absolute -top-0.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full transition-all ${
-                    active
-                      ? "bg-[#7A1020] shadow-[0_0_7px_2px_rgba(122,16,32,.3)]"
-                      : "scale-50 bg-transparent"
-                  }`}
-                />
-                <SparkBurst />
-              </a>
-            );
-          })}
-        </div>
-
-        <div className="flex shrink-0 items-center gap-1.5 border-l border-[#0B1450]/10 pl-1.5 dark:border-white/10">
-          <div className="hidden rounded-xl border border-[#0B1450]/10 bg-white/35 p-0.5 dark:border-white/10 dark:bg-white/[0.035] sm:block">
-            <ThemeToggle />
-          </div>
-
-          <Button
-            asChild
-            className="group/navitem relative h-10 w-auto min-w-[5.5rem] overflow-visible rounded-xl bg-gradient-to-r from-[#0B1450] via-[#14246e] to-[#3629b7] px-3 py-1 text-xs font-bold text-white shadow-[0_12px_24px_-12px_rgba(33,69,214,.72)] transition-all duration-300 hover:-translate-y-0.5 hover:from-[#7A1020] hover:via-[#A0162B] hover:to-[#B51B32] hover:shadow-[0_12px_26px_-10px_rgba(181,27,50,.58)] dark:from-[#242426] dark:via-[#181819] dark:to-[#741827] sm:min-w-[6.75rem] sm:px-4"
-          >
-            <a
-              href="#contact"
-              onClick={(event) => navigateToSection(event, "#contact")}
-              className="flex flex-row items-center justify-center gap-2 whitespace-nowrap leading-none"
-            >
-              <span>Let&apos;s Talk</span>
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              <SparkBurst />
-            </a>
-          </Button>
-        </div>
-
-        <span className="pointer-events-none absolute inset-x-10 bottom-0 h-px bg-gradient-to-r from-transparent via-[#B51B32]/60 to-transparent" />
-      </div>
     </nav>
   );
 }

@@ -1,87 +1,7 @@
 import Image from "next/image";
-import {
-  ArrowUpRight,
-  Blocks,
-  BrainCircuit,
-  Cloud,
-  Code2,
-  Crosshair,
-  Database,
-  Settings2,
-} from "lucide-react";
-
-const skillGroups = [
-  {
-    id: "languages",
-    title: "Programming Languages",
-    description: "Languages I use to turn ideas into reliable systems.",
-    icon: Code2,
-    tone: "blue",
-    className: "left-[31%] top-[5%] w-[21rem]",
-    shape: "rounded-[26%_18%_24%_15%/18%_24%_20%_28%]",
-    skills: ["Python", "JavaScript", "Java", "C++", "C", "C#"],
-  },
-  {
-    id: "ai",
-    title: "AI & ML",
-    description: "Models, pipelines and tools for building intelligent systems.",
-    icon: BrainCircuit,
-    tone: "red",
-    className: "left-[63.5%] top-[7%] w-[22rem]",
-    shape: "rounded-[18%_25%_18%_26%/24%_18%_25%_18%]",
-    skills: ["Machine Learning", "Deep Learning", "NLP", "Gen AI", "PyTorch", "RAG"],
-  },
-  {
-    id: "frameworks",
-    title: "Frameworks & Libraries",
-    description: "Core frameworks I work with across different domains.",
-    icon: Blocks,
-    tone: "red",
-    className: "left-[25.5%] top-[31%] w-[22rem]",
-    shape: "rounded-[18%_23%_21%_27%/25%_18%_27%_20%]",
-    skills: ["React", "Next.js", "Node.js", "TensorFlow", "Scikit-learn", "Pandas"],
-  },
-  {
-    id: "databases",
-    title: "Databases & Storage",
-    description: "Storing, retrieving and working with production data.",
-    icon: Database,
-    tone: "blue",
-    className: "left-[77.5%] top-[34%] w-[20rem]",
-    shape: "rounded-[25%_16%_24%_17%/19%_27%_18%_25%]",
-    skills: ["PostgreSQL", "MongoDB", "MySQL", "SQL Server"],
-  },
-  {
-    id: "domains",
-    title: "Domains & Specialties",
-    description: "Problem spaces I enjoy exploring and building in.",
-    icon: Crosshair,
-    tone: "blue",
-    className: "left-[29%] top-[59%] w-[22rem]",
-    shape: "rounded-[22%_27%_17%_24%/18%_23%_25%_20%]",
-    skills: ["Agentic AI", "RAG", "Computer Vision", "NLP", "Game Dev", "Parallel Computing"],
-  },
-  {
-    id: "tools",
-    title: "Tools & Others",
-    description: "Everything else that keeps the work productive.",
-    icon: Settings2,
-    tone: "blue",
-    className: "left-[54.5%] top-[72%] w-[20rem]",
-    shape: "rounded-[18%_24%_20%_26%/24%_18%_27%_17%]",
-    skills: ["Git", "VS Code", "Jupyter", "Postman", "FastAPI", "Flask"],
-  },
-  {
-    id: "devops",
-    title: "DevOps & Cloud",
-    description: "Deploying, tracking and maintaining dependable systems.",
-    icon: Cloud,
-    tone: "red",
-    className: "left-[75%] top-[61%] w-[21rem]",
-    shape: "rounded-[24%_18%_27%_16%/18%_25%_19%_27%]",
-    skills: ["Docker", "GitHub", "MLflow", "REST APIs", "Postman"],
-  },
-];
+import { ArrowUpRight } from "lucide-react";
+import MobileSkillsCarousel from "./skills/MobileSkillsCarousel";
+import { skillGroups } from "./skills/skillsData";
 
 const networkNodes = [
   [555, 128, "#2145D6"],
@@ -213,7 +133,7 @@ function SectionIntro() {
         Skills & Technologies
         <span className="ml-2 h-1.5 w-1.5 self-center rounded-full bg-[#B51B32]" />
       </p>
-      <h2 className="mt-6 text-[clamp(3rem,4vw,4.5rem)] font-black leading-[0.92] tracking-[-0.065em] text-[#080d35] dark:text-white">
+      <h2 data-motion-heading className="mt-6 text-[clamp(3rem,4vw,4.5rem)] font-black leading-[0.92] tracking-[-0.065em] text-[#080d35] dark:text-white">
         Tools for
         <br />
         Bigger Ideas<span className="text-[#B51B32]">.</span>
@@ -223,6 +143,7 @@ function SectionIntro() {
       </p>
       <div className="mt-5 flex items-center gap-4">
         <a
+          data-web-land="skills-setup"
           href="#experience"
           className="inline-flex items-center gap-3 rounded-full border border-[#0B1450]/10 bg-white/80 px-5 py-3 text-xs font-extrabold text-[#0B1450] shadow-[0_14px_30px_-20px_rgba(11,20,80,.6)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-[#B51B32]/30 hover:text-[#B51B32] dark:border-white/10 dark:bg-white/[0.07] dark:text-white"
         >
@@ -279,7 +200,8 @@ export function Skills() {
 
       <div className="relative z-20 mx-auto max-w-5xl px-5 pb-28 pt-16 xl:hidden">
         <SectionIntro />
-        <div className="relative mt-12 grid gap-5 md:grid-cols-2">
+        <MobileSkillsCarousel />
+        <div className="relative mt-12 hidden gap-5 md:grid md:grid-cols-2">
           <span className="pointer-events-none absolute bottom-6 left-1/2 top-6 w-px -translate-x-1/2 bg-gradient-to-b from-[#2145D6]/30 via-[#5B6DF0]/25 to-[#B51B32]/30" />
           {skillGroups.map((group) => (
             <SkillCard key={group.id} group={group} compact />

@@ -69,6 +69,7 @@ export function FloatingFeatureCard({ icon: Icon, title, detail, callout, motion
     <article
       data-hero-card
       data-motion={motion}
+      data-web-land={motion === "top-left" ? "hero-card" : undefined}
       className={cn(
         "group/card",
         className

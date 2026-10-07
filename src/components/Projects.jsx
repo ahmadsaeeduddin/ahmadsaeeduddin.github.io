@@ -143,14 +143,14 @@ export function Projects() {
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 data-motion-heading className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Innovative solutions spanning AI/ML, full-stack development, and cutting-edge research projects.
           </p>
         </div>
 
         {/* Transparent / Glass Slider */}
-        <div className="relative">
+        <div data-web-land="projects-carousel" className="relative">
           <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-6 shadow-2xl overflow-hidden">
             {/* Controls */}
             <Button
@@ -236,7 +236,7 @@ export function Projects() {
         </div>
 
         {/* Selected Project Details */}
-        <div className="mt-12">
+        <div data-web-land="projects-detail" className="mt-12">
           <Card className="border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
             <CardContent className="p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">

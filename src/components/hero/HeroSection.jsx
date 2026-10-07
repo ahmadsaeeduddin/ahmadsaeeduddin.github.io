@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
-    title: "AI Systems",
+    title: "Brains for Products",
     detail: "Intelligence",
     callout: "Reason · Retrieve",
     icon: BrainCircuit,
@@ -22,15 +22,15 @@ const features = [
     position: "lg:left-[8%] lg:top-[27%] xl:left-[12%]",
   },
   {
-    title: "Agentic Workflows",
-    detail: "Automation",
-    callout: "Agents in motion",
+    title: "Agentic Orchestration",
+    detail: "Autopilot",
+    callout: "AGENTS ON THE LOOSE",
     icon: Workflow,
     motion: "top-right",
     position: "lg:right-[7%] lg:top-[29%] xl:right-[11%]",
   },
   {
-    title: "Startups",
+    title: "Ideas",
     detail: "Products",
     callout: "Zero to launch",
     icon: Sparkles,
@@ -38,9 +38,9 @@ const features = [
     position: "lg:left-[11%] lg:top-[49%] xl:left-[16%]",
   },
   {
-    title: "Computer Vision",
+    title: "Vision",
     detail: "Perception",
-    callout: "Pixels to insight",
+    callout: "TEACHING PIXELS TO THINK",
     icon: ScanEye,
     motion: "bottom-right",
     position: "lg:right-[9%] lg:top-[50%] xl:right-[14%]",
@@ -55,6 +55,7 @@ export function HeroSection() {
     if (!hero) return undefined;
 
     const navbar = document.querySelector("[data-site-navbar]");
+    const mainNavbar = document.querySelector("[data-main-navbar]");
     const name = hero.querySelector("[data-hero-name]");
     const cards = gsap.utils.toArray(hero.querySelectorAll("[data-hero-card]"));
     const content = hero.querySelector("[data-hero-content]");
@@ -66,7 +67,7 @@ export function HeroSection() {
 
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set([navbar, name, cards, content, role, indicator, connections, atmosphere], {
+        gsap.set([navbar, mainNavbar, name, cards, content, role, indicator, connections, atmosphere], {
           clearProps: "all",
         });
       });
@@ -144,7 +145,8 @@ export function HeroSection() {
             )
             .fromTo(connections, { autoAlpha: 0.7 }, { autoAlpha: 0.12 }, 0)
             .to(atmosphere, { y: (_, element) => (element.dataset.depth === "far" ? -18 : -34) }, 0)
-            .to(indicator, { autoAlpha: 0, y: 12, duration: 0.18 }, 0);
+            .to(indicator, { autoAlpha: 0, y: 12, duration: 0.18 }, 0)
+            .to(mainNavbar, { autoAlpha: 0, y: -20, duration: 0.28 }, 0.72);
         };
 
         const responsiveScroll = gsap.matchMedia();

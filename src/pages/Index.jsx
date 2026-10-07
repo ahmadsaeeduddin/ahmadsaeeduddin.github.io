@@ -9,11 +9,14 @@ import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import ScrollWebSlinger from "@/components/navigation/ScrollWebSlinger";
+import SectionHeadingMotion from "@/components/motion/SectionHeadingMotion";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <ScrollWebSlinger />
       <main>
         <HeroSection />
         <About />
@@ -24,6 +27,7 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      <SectionHeadingMotion />
     </div>
   );
 };
