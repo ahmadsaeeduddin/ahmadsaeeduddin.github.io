@@ -4,6 +4,8 @@ import { useLayoutEffect, useRef, useState } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Github,
   Linkedin,
   Mail,
@@ -76,9 +78,11 @@ export function Contact() {
   const tearTargetRef = useRef(null);
   const tearLineRef = useRef(null);
   const dragRef = useRef({ active: false, pointerId: null, startX: 0, progress: 0 });
+  const pageSwipeRef = useRef({ active: false, pointerId: null, startX: 0 });
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
   const [feedback, setFeedback] = useState("");
+  const [mobilePage, setMobilePage] = useState(0);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -194,6 +198,26 @@ export function Contact() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((current) => ({ ...current, [name]: value }));
+  };
+
+  const handlePageSwipeStart = (event) => {
+    if (window.innerWidth >= 768 || event.target.closest("input, textarea, button, a")) return;
+    pageSwipeRef.current = {
+      active: true,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+    };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const handlePageSwipeEnd = (event) => {
+    const swipe = pageSwipeRef.current;
+    if (!swipe.active || swipe.pointerId !== event.pointerId) return;
+    const distance = event.clientX - swipe.startX;
+    if (distance < -44) setMobilePage(1);
+    if (distance > 44) setMobilePage(0);
+    pageSwipeRef.current.active = false;
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
   };
 
   const validate = () => {
@@ -431,7 +455,7 @@ export function Contact() {
       className="relative isolate min-h-[100svh] overflow-x-clip bg-[#F5F6FC] text-[#0B1450] dark:bg-[#080809] dark:text-white md:h-[145svh]"
     >
       <ContactWeb />
-      <div className="pointer-events-none absolute left-[-12rem] top-[18%] h-[30rem] w-[30rem] rounded-full bg-[#2145D6]/10 blur-[100px] dark:bg-[#2145D6]/[0.08]" />
+      <div className="pointer-events-none absolute left-[-12rem] top-[18%] h-[30rem] w-[30rem] rounded-full bg-[#2145D6]/10 blur-[100px] dark:bg-white/[0.035]" />
       <div className="pointer-events-none absolute bottom-[6%] right-[-10rem] h-[28rem] w-[28rem] rounded-full bg-[#7A1020]/10 blur-[100px] dark:bg-[#7A1020]/[0.1]" />
 
       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col px-4 pb-24 pt-20 sm:px-7 md:sticky md:top-0 md:h-[100svh] md:overflow-hidden md:pb-6 md:pt-16 lg:px-10">
@@ -453,14 +477,34 @@ export function Contact() {
           </p>
         </header>
 
+        <div className="relative z-30 mx-auto mt-6 flex items-center rounded-full border border-[#0B1450]/10 bg-white/70 p-1 shadow-[0_12px_30px_-20px_rgba(11,20,80,.55)] backdrop-blur-xl dark:border-white/12 dark:bg-white/[0.055] md:hidden">
+          {["About", "Message"].map((label, page) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => setMobilePage(page)}
+              aria-pressed={mobilePage === page}
+              className={`flex items-center gap-2 rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-[0.14em] transition-all duration-300 ${
+                mobilePage === page
+                  ? "bg-[#0B1450] text-white shadow-md dark:bg-white dark:text-black"
+                  : "text-[#66708d] dark:text-white/55"
+              }`}
+            >
+              {page === 0 ? <ChevronLeft className="h-3.5 w-3.5" /> : null}
+              {label}
+              {page === 1 ? <ChevronRight className="h-3.5 w-3.5" /> : null}
+            </button>
+          ))}
+        </div>
+
         <div
           ref={bookRef}
-          className="contact-book relative z-20 mx-auto mt-8 grid w-full max-w-[1120px] flex-1 grid-cols-1 items-stretch [perspective:1800px] md:mt-5 md:max-h-[650px] md:min-h-[500px] md:grid-cols-2"
+          className="contact-book relative z-20 mx-auto mt-4 block w-full max-w-[1120px] flex-1 overflow-hidden [perspective:1800px] md:mt-5 md:grid md:max-h-[650px] md:min-h-[500px] md:grid-cols-2 md:items-stretch md:overflow-visible"
         >
           <div
             ref={coverRef}
             aria-hidden="true"
-            className="contact-cover absolute bottom-0 left-1/2 top-0 z-40 hidden w-1/2 overflow-hidden rounded-r-[2rem] border border-[#2145D6]/30 bg-[linear-gradient(145deg,#0B1450_0%,#172d93_60%,#7A1020_130%)] p-10 text-white shadow-[0_40px_90px_-35px_rgba(11,20,80,.8)] md:grid md:place-items-center"
+            className="contact-cover absolute bottom-0 left-1/2 top-0 z-40 hidden w-1/2 overflow-hidden rounded-r-[2rem] border border-[#2145D6]/30 bg-[linear-gradient(145deg,#0B1450_0%,#172d93_60%,#7A1020_130%)] p-10 text-white shadow-[0_40px_90px_-35px_rgba(11,20,80,.8)] dark:border-white/15 dark:bg-[linear-gradient(145deg,#050505_0%,#111_62%,#5f0d1c_135%)] md:grid md:place-items-center"
           >
             <div className="text-center">
               <MessageCircle className="mx-auto h-12 w-12 opacity-75" strokeWidth={1.3} />
@@ -472,10 +516,20 @@ export function Contact() {
             </div>
           </div>
 
+          <div
+            className={`contact-mobile-track flex w-[200%] touch-pan-y items-stretch transition-transform duration-700 md:contents ${
+              mobilePage === 1 ? "-translate-x-1/2" : "translate-x-0"
+            }`}
+            style={{ transitionTimingFunction: "cubic-bezier(.22, 1, .36, 1)" }}
+            onPointerDown={handlePageSwipeStart}
+            onPointerUp={handlePageSwipeEnd}
+            onPointerCancel={handlePageSwipeEnd}
+          >
+
           <article
             ref={leftPageRef}
             data-web-land="contact-card"
-            className="contact-page contact-page-left relative overflow-hidden rounded-t-[2rem] border border-[#0B1450]/10 bg-white/80 p-6 shadow-[0_34px_80px_-45px_rgba(11,20,80,.55)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0e0f14]/95 sm:p-8 md:rounded-l-[2rem] md:rounded-tr-none lg:p-10"
+            className="contact-page contact-page-left relative min-h-[620px] w-1/2 shrink-0 overflow-hidden rounded-[2rem] border border-[#0B1450]/10 bg-white/80 p-6 shadow-[0_34px_80px_-45px_rgba(11,20,80,.55)] backdrop-blur-xl dark:border-white/10 dark:bg-[#090909]/95 sm:p-8 md:min-h-0 md:w-auto md:shrink md:rounded-l-[2rem] md:rounded-r-none lg:p-10"
           >
             <span className="absolute inset-y-0 right-0 hidden w-14 bg-[linear-gradient(90deg,transparent,rgba(11,20,80,.06))] dark:bg-[linear-gradient(90deg,transparent,rgba(0,0,0,.4))] md:block" />
             <div className="relative flex h-full flex-col">
@@ -494,7 +548,7 @@ export function Contact() {
                   href="mailto:ahmadsaeeduddin@gmail.com"
                   className="group rounded-2xl border border-[#2145D6]/12 bg-[#F5F6FC]/80 p-4 transition hover:-translate-y-1 hover:border-[#2145D6]/30 dark:border-white/10 dark:bg-white/[0.045]"
                 >
-                  <Mail className="h-5 w-5 text-[#2145D6] dark:text-[#8290ff]" />
+                  <Mail className="h-5 w-5 text-[#2145D6] dark:text-white" />
                   <p className="mt-3 text-xs font-black uppercase tracking-[0.12em]">Email</p>
                   <p className="mt-1 break-all text-xs leading-5 text-[#65708c] dark:text-slate-400">
                     ahmadsaeeduddin@gmail.com
@@ -537,14 +591,14 @@ export function Contact() {
 
           <article
             ref={rightPageRef}
-            className="contact-page contact-page-right relative min-h-[620px] overflow-hidden rounded-b-[2rem] border border-[#0B1450]/10 bg-[#fbfbff]/90 shadow-[0_34px_80px_-45px_rgba(11,20,80,.55)] backdrop-blur-xl dark:border-white/10 dark:bg-[#111218]/95 md:min-h-0 md:rounded-r-[2rem] md:rounded-bl-none"
+            className="contact-page contact-page-right relative min-h-[620px] w-1/2 shrink-0 overflow-hidden rounded-[2rem] border border-[#0B1450]/10 bg-[#fbfbff]/90 shadow-[0_34px_80px_-45px_rgba(11,20,80,.55)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0b0b]/95 md:min-h-0 md:w-auto md:shrink md:rounded-l-none md:rounded-r-[2rem]"
           >
             <span className="absolute inset-y-0 left-0 z-20 hidden w-14 bg-[linear-gradient(90deg,rgba(11,20,80,.075),transparent)] dark:bg-[linear-gradient(90deg,rgba(0,0,0,.45),transparent)] md:block" />
 
             <div className="absolute inset-6 z-0 grid place-items-center text-center sm:inset-9">
               {status === "success" ? (
                 <div className="max-w-sm">
-                  <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#2145D6]/10 text-[#2145D6] dark:bg-white/10 dark:text-[#8ea0ff]">
+                  <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#2145D6]/10 text-[#2145D6] dark:bg-white/10 dark:text-white">
                     <CheckCircle2 className="h-8 w-8" />
                   </span>
                   <h3 className="mt-5 text-3xl font-black tracking-[-0.05em]">Message sent.</h3>
@@ -559,7 +613,7 @@ export function Contact() {
                 </div>
               ) : status === "sending" ? (
                 <div>
-                  <Send className="contact-send-flight mx-auto h-10 w-10 text-[#2145D6] dark:text-[#8290ff]" />
+                  <Send className="contact-send-flight mx-auto h-10 w-10 text-[#2145D6] dark:text-white" />
                   <p className="mt-4 text-sm font-bold text-[#63708e] dark:text-slate-400">{feedback}</p>
                 </div>
               ) : null}
@@ -569,11 +623,11 @@ export function Contact() {
               ref={tearSheetRef}
               data-web-land="contact-form"
               onSubmit={handleSubmit}
-              className="contact-tear-sheet relative z-10 flex h-full min-h-[620px] flex-col bg-[linear-gradient(145deg,rgba(255,255,255,.98),rgba(242,245,255,.96)_64%,rgba(255,240,242,.94))] p-6 dark:bg-[linear-gradient(145deg,#101116,#13162a_62%,#261016)] sm:p-8 md:min-h-0 lg:p-9"
+              className="contact-tear-sheet relative z-10 flex h-full min-h-[620px] flex-col bg-[linear-gradient(145deg,rgba(255,255,255,.98),rgba(242,245,255,.96)_64%,rgba(255,240,242,.94))] p-6 dark:bg-[linear-gradient(145deg,#070707,#111_62%,#23090e)] sm:p-8 md:min-h-0 lg:p-9"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-[0.32em] text-[#2145D6] dark:text-[#8290ff]">
+                  <p className="text-[9px] font-black uppercase tracking-[0.32em] text-[#2145D6] dark:text-white/65">
                     Message page
                   </p>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.04em]">
@@ -609,7 +663,7 @@ export function Contact() {
               <div className="relative mt-4 border-t border-dashed border-[#0B1450]/20 pt-4 dark:border-white/20">
                 <span
                   ref={tearLineRef}
-                  className="absolute -top-px left-0 right-0 h-[2px] origin-right scale-x-0 bg-gradient-to-l from-[#B51B32] via-[#7A1020] to-[#2145D6] shadow-[0_0_14px_rgba(181,27,50,.45)]"
+                  className="absolute -top-px left-0 right-0 h-[2px] origin-right scale-x-0 bg-gradient-to-l from-[#B51B32] via-[#7A1020] to-[#2145D6] shadow-[0_0_14px_rgba(181,27,50,.45)] dark:to-white"
                 />
                 <div className="flex items-center justify-between gap-3">
                   <div
@@ -634,7 +688,7 @@ export function Contact() {
                         sendMessage();
                       }
                     }}
-                    className="contact-tear-handle group inline-flex touch-none items-center gap-3 rounded-full bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-xs font-black text-white shadow-[0_16px_34px_-14px_rgba(33,69,214,.7)] transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60"
+                    className="contact-tear-handle group inline-flex touch-none items-center gap-3 rounded-full bg-gradient-to-r from-[#7A1020] via-[#B51B32] to-[#2145D6] px-5 py-3 text-xs font-black text-white shadow-[0_16px_34px_-14px_rgba(33,69,214,.7)] transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60 dark:from-[#151515] dark:via-[#7A1020] dark:to-[#B51B32] dark:shadow-[0_16px_34px_-14px_rgba(181,27,50,.55)]"
                     aria-label="Drag left to tear and send this message, or press Enter"
                   >
                     <MoveLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -656,7 +710,9 @@ export function Contact() {
             </form>
           </article>
 
-          <span className="contact-spine pointer-events-none absolute bottom-3 left-1/2 top-3 z-30 hidden w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-transparent via-[#2145D6]/45 to-transparent shadow-[0_0_18px_rgba(33,69,214,.35)] md:block" />
+          </div>
+
+          <span className="contact-spine pointer-events-none absolute bottom-3 left-1/2 top-3 z-30 hidden w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-transparent via-[#2145D6]/45 to-transparent shadow-[0_0_18px_rgba(33,69,214,.35)] dark:via-white/35 dark:shadow-[0_0_18px_rgba(255,255,255,.12)] md:block" />
         </div>
       </div>
 
@@ -682,6 +738,16 @@ export function Contact() {
             112deg,
             transparent 0 18px,
             rgba(11, 20, 80, 0.08) 19px,
+            transparent 20px
+          );
+        }
+
+        :global(.dark) .contact-page-left::after,
+        :global(.dark) .contact-page-right::after {
+          background-image: repeating-linear-gradient(
+            112deg,
+            transparent 0 18px,
+            rgba(255, 255, 255, 0.045) 19px,
             transparent 20px
           );
         }
@@ -744,8 +810,9 @@ export function Contact() {
 
         :global(.dark) .contact-field input:focus,
         :global(.dark) .contact-field textarea:focus {
-          border-color: rgba(130, 144, 255, 0.45);
+          border-color: rgba(181, 27, 50, 0.62);
           background: rgba(255, 255, 255, 0.07);
+          box-shadow: 0 0 0 3px rgba(181, 27, 50, 0.1);
         }
 
         .contact-send-flight {

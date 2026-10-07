@@ -279,9 +279,9 @@ export default function SpiderMenuAnimation({ active, anchorRef, targetRef }) {
               <stop offset="1" stopColor="#7A1020" />
             </linearGradient>
             <linearGradient id="menu-spider-blue" x1="0" y1="0" x2="1" y2="1">
-              <stop stopColor="#5B6DF0" />
-              <stop offset="0.6" stopColor="#2145D6" />
-              <stop offset="1" stopColor="#0B1450" />
+              <stop stopColor="var(--spider-blue-light)" />
+              <stop offset="0.6" stopColor="var(--spider-blue-mid)" />
+              <stop offset="1" stopColor="var(--spider-blue-dark)" />
             </linearGradient>
           </defs>
 

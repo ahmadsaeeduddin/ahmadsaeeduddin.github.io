@@ -47,7 +47,7 @@ function ContactRow({ icon: Icon, title, children, accent = "blue" }) {
         className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl border bg-white/70 shadow-[0_14px_28px_-18px_rgba(11,20,80,.55)] backdrop-blur-xl dark:bg-white/[0.06] ${
           red
             ? "border-[#E5202F]/10 text-[#E5202F] dark:border-[#E5202F]/20"
-            : "border-[#2145D6]/10 text-[#2145D6] dark:border-[#5B6DF0]/20 dark:text-[#8290ff]"
+            : "border-[#2145D6]/10 text-[#2145D6] dark:border-white/15 dark:text-white"
         }`}
       >
         <Icon className="h-5 w-5" aria-hidden="true" />
@@ -86,16 +86,16 @@ export function Footer() {
   return (
     <footer
       id="footer"
-      className="relative isolate overflow-hidden border-t border-[#0B1450]/[0.08] bg-[#f8f8fc] text-[#0B1450] dark:border-white/[0.08] dark:bg-[#08090c] dark:text-white"
+      className="relative isolate overflow-hidden border-t border-[#0B1450]/[0.08] bg-[#f8f8fc] text-[#0B1450] dark:border-white/[0.08] dark:bg-[#050505] dark:text-white"
     >
       <img
         src="/footer-back.png"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-30 h-full w-full object-cover object-bottom opacity-[0.38] dark:opacity-[0.14]"
+        className="pointer-events-none absolute inset-0 -z-30 h-full w-full object-cover object-bottom opacity-[0.38] dark:grayscale dark:opacity-[0.1] dark:contrast-125"
       />
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-white/45 dark:bg-[#08090c]/70" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-white/75 to-transparent dark:from-[#08090c]/90" />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-white/45 dark:bg-black/75" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-white/75 to-transparent dark:from-black/95" />
 
       <div className="mx-auto w-full max-w-[1640px] px-5 pb-7 pt-20 sm:px-8 lg:px-12 lg:pt-24">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_.72fr_1fr_1.05fr] lg:gap-0">
@@ -163,7 +163,7 @@ export function Footer() {
             </p>
             <div className="mt-8 space-y-7">
               <ContactRow icon={Mail} title="Email">
-                <a href="mailto:ahmadsaeeduddin@gmail.com" className="transition-colors hover:text-[#2145D6] dark:hover:text-[#8290ff]">
+                <a href="mailto:ahmadsaeeduddin@gmail.com" className="transition-colors hover:text-[#2145D6] dark:hover:text-white">
                   ahmadsaeeduddin@gmail.com
                 </a>
               </ContactRow>
@@ -181,11 +181,11 @@ export function Footer() {
               href="mailto:ahmadsaeeduddin@gmail.com?subject=Let%27s%20build%20something"
               className="group relative flex min-h-[310px] flex-col overflow-hidden rounded-[1.8rem] border border-white/80 bg-white/65 p-7 shadow-[0_28px_70px_-38px_rgba(11,20,80,.65)] backdrop-blur-2xl transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_34px_75px_-34px_rgba(122,16,32,.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2145D6] dark:border-white/10 dark:bg-white/[0.055] dark:shadow-[0_28px_70px_-38px_rgba(0,0,0,.95)] sm:p-8"
             >
-              <span className="absolute -right-4 -top-7 h-28 w-28 rounded-full bg-gradient-to-br from-[#ff8ea4] via-[#7b62df] to-[#2145D6] opacity-85 shadow-[0_20px_45px_-15px_rgba(33,69,214,.65)] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12" />
+              <span className="absolute -right-4 -top-7 h-28 w-28 rounded-full bg-gradient-to-br from-[#ff8ea4] via-[#7b62df] to-[#2145D6] opacity-85 shadow-[0_20px_45px_-15px_rgba(33,69,214,.65)] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12 dark:from-white dark:via-[#4b4b4b] dark:to-[#8F1528] dark:shadow-[0_20px_45px_-15px_rgba(181,27,50,.42)]" />
               <span className="absolute right-[-2.4rem] top-[-3.1rem] h-36 w-40 rotate-12 rounded-[50%] border border-[#E5202F]/35" />
               <span className="absolute right-[-3.4rem] top-[-1.1rem] h-24 w-48 -rotate-[32deg] rounded-[50%] border border-[#2145D6]/30" />
 
-              <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[#f7edff] to-[#ffeef4] text-[#7c3ee5] shadow-[0_14px_30px_-18px_rgba(124,62,229,.7)] dark:from-white/10 dark:to-[#7A1020]/20 dark:text-[#b794ff]">
+              <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[#f7edff] to-[#ffeef4] text-[#7c3ee5] shadow-[0_14px_30px_-18px_rgba(124,62,229,.7)] dark:from-white/10 dark:to-[#7A1020]/20 dark:text-white">
                 <Send className="h-6 w-6 -rotate-12" aria-hidden="true" />
               </span>
 

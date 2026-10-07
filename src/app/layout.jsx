@@ -7,18 +7,23 @@ export const metadata = {
   description:
     "Portfolio of Saeed Ud Din Ahmad - CS student at FAST University specializing in AI/ML, full-stack development, and innovative projects.",
   authors: [{ name: "Saeed Ud Din Ahmad" }],
+  icons: {
+    icon: [{ url: "/spider-mark.svg", type: "image/svg+xml" }],
+    shortcut: "/spider-mark.svg",
+    apple: "/spider-mark.svg",
+  },
   openGraph: {
     type: "website",
     title: "Saeed Ud Din Ahmad",
     description:
-      "Explore innovative AI/ML projects, full-stack applications, and cutting-edge research by Saeed Ud Din Ahmad.",
+      "Ideas, experiments, adventures, and everything worth building.",
     url: "/",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Saeed Ud Din Ahmad - AI/ML Engineer Portfolio",
-    description: "Innovative AI/ML projects and full-stack development portfolio",
+    description: "A place where ideas get built, experiments get dangerous, and the line between crazy and possible gets blurry",
     images: ["/og.png"],
   },
 };

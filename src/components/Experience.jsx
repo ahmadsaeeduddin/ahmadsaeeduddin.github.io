@@ -94,6 +94,7 @@ const experiences = [
 function ExperienceCard({ experience, index }) {
   const isRed = index % 2 === 1;
   const accent = isRed ? "#B51B32" : "#2145D6";
+  const darkAccent = isRed ? "#B51B32" : "#333333";
 
   return (
     <article
@@ -108,6 +109,8 @@ function ExperienceCard({ experience, index }) {
       className="absolute left-1/2 top-1/2 h-[68svh] min-h-[31rem] w-[calc(100%_-_2rem)] max-w-[70rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.2rem] border-[3px] border-[#080d35] bg-[#fffaf1] text-[#080d35] shadow-[10px_12px_0_#080d35] will-change-transform motion-reduce:relative motion-reduce:left-auto motion-reduce:top-auto motion-reduce:h-auto motion-reduce:min-h-[30rem] motion-reduce:w-full motion-reduce:translate-x-0 motion-reduce:translate-y-0 dark:border-white/85 dark:bg-[#101013] dark:text-white dark:shadow-[10px_12px_0_rgba(255,255,255,.16)] sm:h-[62svh] sm:rounded-[1.6rem] lg:h-[56svh]"
       style={{
         zIndex: index + 1,
+        "--experience-accent": accent,
+        "--experience-accent-dark": darkAccent,
         backgroundImage:
           "repeating-linear-gradient(135deg, transparent 0 10px, rgba(11,20,80,.055) 10px 11px)",
       }}
@@ -115,13 +118,13 @@ function ExperienceCard({ experience, index }) {
       <div
         className="absolute inset-x-0 top-0 h-2"
         style={{
-          background: `linear-gradient(90deg, ${accent}, #0B1450 52%, ${isRed ? "#2145D6" : "#B51B32"})`,
+          background: "linear-gradient(90deg, var(--experience-active), #111 52%, #B51B32)",
         }}
       />
       <span
         aria-hidden="true"
         className="absolute -left-3 -top-16 font-black leading-none tracking-[-0.1em] opacity-[0.08] dark:opacity-[0.06]"
-        style={{ color: accent, fontSize: "clamp(10rem, 21vw, 18rem)" }}
+        style={{ color: "var(--experience-active)", fontSize: "clamp(10rem, 21vw, 18rem)" }}
       >
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -130,7 +133,7 @@ function ExperienceCard({ experience, index }) {
         <div className="relative z-10 self-end md:self-center">
           <div
             className="inline-flex -rotate-1 items-center gap-2 border-2 border-[#080d35] px-3 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-white shadow-[4px_4px_0_#080d35] dark:border-white/80 dark:shadow-[4px_4px_0_rgba(255,255,255,.16)]"
-            style={{ backgroundColor: accent }}
+            style={{ backgroundColor: "var(--experience-active)" }}
           >
             <BriefcaseBusiness className="h-3.5 w-3.5" aria-hidden="true" />
             {experience.category} · {experience.period}
@@ -138,7 +141,7 @@ function ExperienceCard({ experience, index }) {
 
           <h3 className="mt-6 max-w-xl text-[clamp(2.35rem,6vw,5.4rem)] font-black leading-[0.82] tracking-[-0.07em] [text-shadow:3px_3px_0_rgba(181,27,50,.2)] sm:mt-7">
             {experience.title}
-            <span style={{ color: accent }}>.</span>
+            <span style={{ color: "var(--experience-active)" }}>.</span>
           </h3>
           <p className="mt-4 text-xs font-black uppercase tracking-[0.24em] text-[#0B1450]/70 dark:text-white/60">
             {experience.company}
@@ -148,7 +151,7 @@ function ExperienceCard({ experience, index }) {
             <span className="flex items-center gap-2">
               <Calendar
                 className="h-4 w-4"
-                style={{ color: accent }}
+                style={{ color: "var(--experience-active)" }}
                 aria-hidden="true"
               />
               {experience.type}
@@ -156,7 +159,7 @@ function ExperienceCard({ experience, index }) {
             <span className="flex items-center gap-2">
               <MapPin
                 className="h-4 w-4"
-                style={{ color: accent }}
+                style={{ color: "var(--experience-active)" }}
                 aria-hidden="true"
               />
               {experience.location}
@@ -184,7 +187,7 @@ function ExperienceCard({ experience, index }) {
           </div>
           <div
             className="mt-5 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em]"
-            style={{ color: accent }}
+            style={{ color: "var(--experience-active)" }}
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             {experience.current ? "Currently building" : "Chapter complete"}
@@ -195,7 +198,7 @@ function ExperienceCard({ experience, index }) {
       <span
         aria-hidden="true"
         className="absolute bottom-1 right-4 rotate-[-8deg] text-[clamp(3.5rem,9vw,7.5rem)] font-black italic leading-none tracking-[-0.08em] opacity-[0.16]"
-        style={{ color: accent }}
+        style={{ color: "var(--experience-active)" }}
       >
         {index === experiences.length - 1 ? "THWIP!" : "POW!"}
       </span>

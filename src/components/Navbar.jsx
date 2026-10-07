@@ -188,15 +188,15 @@ export function Navbar() {
           className={`group relative flex h-12 items-center overflow-hidden rounded-full border bg-white/[0.82] p-1.5 text-[#0B1450] shadow-[0_16px_45px_-18px_rgba(11,20,80,.62),inset_0_1px_0_rgba(255,255,255,.98)] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 dark:bg-[#0b0b0d]/90 dark:text-white dark:shadow-[0_16px_45px_-18px_rgba(0,0,0,.95),inset_0_1px_0_rgba(255,255,255,.09)] ${
             compactMenuOpen
               ? "w-12 border-[#B51B32]/35"
-              : "w-[9.6rem] border-[#2145D6]/25"
+              : "w-[9.6rem] border-[#2145D6]/25 dark:border-white/15"
           }`}
         >
-          <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2145D6]/[0.08] via-transparent to-[#B51B32]/[0.08]" />
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2145D6]/[0.08] via-transparent to-[#B51B32]/[0.08] dark:from-white/[0.07]" />
           <span
             className={`relative grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br text-white shadow-[0_8px_20px_-8px_rgba(33,69,214,.72)] transition-all duration-300 ${
               compactMenuOpen
                 ? "from-[#7A1020] to-[#B51B32]"
-                : "from-[#0B1450] to-[#2145D6]"
+                : "from-[#0B1450] to-[#2145D6] dark:from-[#111] dark:to-[#3a3a3a]"
             }`}
           >
             {compactMenuOpen ? (
@@ -228,7 +228,7 @@ export function Navbar() {
         <div
           ref={compactMenuPanelRef}
           id="mobile-navigation-panel"
-          className={`absolute right-0 top-14 max-h-[calc(100svh-5rem)] w-[min(20rem,calc(100vw-3.5rem))] origin-top-right overflow-y-auto rounded-[1.8rem] bg-gradient-to-br from-[#2145D6]/45 via-white/80 to-[#B51B32]/45 p-px shadow-[0_30px_80px_-26px_rgba(11,20,80,.72)] transition-[transform,opacity,visibility] duration-300 ease-out dark:via-white/15 dark:shadow-[0_30px_80px_-24px_rgba(0,0,0,.95)] ${
+          className={`absolute right-0 top-14 max-h-[calc(100svh-5rem)] w-[min(20rem,calc(100vw-3.5rem))] origin-top-right overflow-y-auto rounded-[1.8rem] bg-gradient-to-br from-[#2145D6]/45 via-white/80 to-[#B51B32]/45 p-px shadow-[0_30px_80px_-26px_rgba(11,20,80,.72)] transition-[transform,opacity,visibility] duration-300 ease-out dark:from-white/25 dark:via-white/10 dark:to-[#B51B32]/55 dark:shadow-[0_30px_80px_-24px_rgba(0,0,0,.95)] ${
             compactMenuOpen
               ? "visible translate-y-0 scale-100 opacity-100"
               : "invisible -translate-y-3 scale-[0.96] opacity-0"
@@ -238,7 +238,7 @@ export function Navbar() {
             <svg
               aria-hidden="true"
               viewBox="0 0 360 210"
-              className="pointer-events-none absolute inset-x-0 top-0 h-52 w-full opacity-[0.16] dark:opacity-[0.12]"
+              className="pointer-events-none absolute inset-x-0 top-0 h-52 w-full opacity-[0.16] dark:grayscale dark:opacity-[0.14]"
               fill="none"
             >
               <path d="M370 5C276 20 245 67 228 143C211 202 134 195 78 226" stroke="#2145D6" />
@@ -309,7 +309,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={(event) => navigateToSection(event, "#contact")}
-              className="relative mt-3 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-[#0B1450] via-[#2145D6] to-[#7A1020] text-sm font-extrabold text-white shadow-[0_14px_28px_-14px_rgba(33,69,214,.8)]"
+              className="relative mt-3 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-[#0B1450] via-[#2145D6] to-[#7A1020] text-sm font-extrabold text-white shadow-[0_14px_28px_-14px_rgba(33,69,214,.8)] dark:from-[#111] dark:via-[#3b3b3b] dark:to-[#7A1020] dark:shadow-[0_14px_28px_-14px_rgba(0,0,0,.9)]"
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               Let&apos;s Talk

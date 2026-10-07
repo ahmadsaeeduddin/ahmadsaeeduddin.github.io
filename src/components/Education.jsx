@@ -56,7 +56,7 @@ function EducationWeb() {
       aria-hidden="true"
       viewBox="0 0 1600 920"
       preserveAspectRatio="none"
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-45 dark:opacity-15"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-45 dark:grayscale dark:opacity-20"
       fill="none"
     >
       <defs>
@@ -112,7 +112,7 @@ function NodeWeb({ index }) {
       aria-hidden="true"
       viewBox="0 0 600 430"
       preserveAspectRatio="none"
-      className="pointer-events-none absolute -inset-x-8 -top-16 z-0 hidden h-[30rem] w-[calc(100%+4rem)] overflow-visible sm:block"
+      className="pointer-events-none absolute -inset-x-8 -top-16 z-0 hidden h-[30rem] w-[calc(100%+4rem)] overflow-visible dark:grayscale sm:block"
       fill="none"
     >
       <defs>
@@ -165,7 +165,7 @@ function EducationBridgeWeb() {
       aria-hidden="true"
       viewBox="0 0 1000 1000"
       preserveAspectRatio="none"
-      className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full overflow-visible lg:block"
+      className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full overflow-visible dark:grayscale lg:block"
       fill="none"
     >
       <defs>
@@ -199,11 +199,11 @@ function EducationBridgeWeb() {
 
 function EducationNode({ number }) {
   return (
-    <div className="relative z-20 mx-auto grid h-28 w-28 place-items-center rounded-full p-[0.62rem] shadow-[0_24px_50px_-25px_rgba(11,20,80,.75)] sm:h-32 sm:w-32 lg:h-28 lg:w-28" style={{ background: "conic-gradient(from 205deg, #0B1450 0deg, #2145D6 112deg, #7A1020 235deg, #0B1450 360deg)" }}>
+    <div className="education-node-ring relative z-20 mx-auto grid h-20 w-20 place-items-center rounded-full p-[0.42rem] shadow-[0_18px_38px_-22px_rgba(11,20,80,.75)] sm:h-24 sm:w-24 lg:h-28 lg:w-28 lg:p-[0.62rem]">
       <div className="grid h-full w-full place-items-center rounded-full border border-white/85 bg-[#FAFAFF]/95 shadow-[inset_0_0_28px_rgba(11,20,80,.1)] dark:border-white/15 dark:bg-[#111113]">
-        <GraduationCap className="h-11 w-11 text-[#0B1450] dark:text-white lg:h-9 lg:w-9" aria-hidden="true" />
+        <GraduationCap className="h-8 w-8 text-[#0B1450] dark:text-white sm:h-9 sm:w-9 lg:h-9 lg:w-9" aria-hidden="true" />
       </div>
-      <span className="absolute -right-2 -top-5 rounded-lg border border-[#7A1020]/35 bg-white/95 px-2.5 py-1.5 text-xs font-black text-[#0B1450] shadow-[0_8px_20px_-12px_rgba(122,16,32,.5)] dark:bg-[#111113] dark:text-white">
+      <span className="absolute -right-2 -top-3 rounded-lg border border-[#7A1020]/35 bg-white/95 px-2 py-1 text-[10px] font-black text-[#0B1450] shadow-[0_8px_20px_-12px_rgba(122,16,32,.5)] dark:bg-[#111113] dark:text-white lg:-top-5 lg:px-2.5 lg:py-1.5 lg:text-xs">
         {number}
       </span>
       <span className="pointer-events-none absolute inset-[-1.1rem] rounded-full border border-dashed border-[#0B1450]/15 dark:border-white/10" />
@@ -221,7 +221,7 @@ function ExpandablePanel({ id, title, icon: Icon, open, onToggle, preview, child
         aria-controls={id}
         className="flex w-full items-center gap-2 px-4 py-3 text-left text-xs font-bold text-[#0B1450] transition-colors hover:text-[#7A1020] dark:text-white dark:hover:text-[#e16a78] sm:text-sm lg:py-2.5"
       >
-        <Icon className="h-4 w-4 text-[#2145D6] dark:text-[#a9b1ff]" aria-hidden="true" />
+        <Icon className="h-4 w-4 text-[#2145D6] dark:text-white" aria-hidden="true" />
         <span>{title}</span>
         <ChevronDown className={`ml-auto h-4 w-4 transition-transform duration-300 ${open ? "rotate-180" : "rotate-0"}`} aria-hidden="true" />
       </button>
@@ -258,23 +258,23 @@ function EducationCard({ education, index }) {
   return (
     <article
       data-web-land={`education-${index}`}
-      className={`relative grid min-w-0 items-center gap-5 lg:w-[84%] lg:gap-5 ${
+      className={`relative min-w-0 pt-8 lg:grid lg:w-[84%] lg:items-center lg:gap-5 lg:pt-0 ${
         index === 0
           ? "lg:ml-auto lg:grid-cols-[7rem_minmax(0,1fr)]"
           : "lg:mr-auto lg:grid-cols-[7rem_minmax(0,1fr)]"
       }`}
     >
       <NodeWeb index={index} />
-      <div className="relative z-20 lg:order-1">
+      <div className="absolute left-4 top-0 z-20 sm:left-6 lg:static lg:order-1">
         <EducationNode number={education.number} />
       </div>
 
-      <div className="relative z-10 flex flex-col rounded-[2rem] border border-white/90 bg-white/[0.72] p-5 shadow-[0_30px_80px_-46px_rgba(11,20,80,.5),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-[#2145D6]/20 dark:border-white/10 dark:bg-[#0d0d0f]/[0.84] dark:shadow-[0_30px_80px_-46px_rgba(0,0,0,.92)] sm:p-7 lg:order-2 lg:p-5">
+      <div className="relative z-10 mt-4 flex flex-col rounded-[1.55rem] border border-white/90 bg-white/[0.72] px-4 pb-4 pt-14 shadow-[0_24px_65px_-42px_rgba(11,20,80,.5),inset_0_1px_0_rgba(255,255,255,.96)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-[#2145D6]/20 dark:border-white/10 dark:bg-[#0d0d0f]/[0.92] dark:shadow-[0_30px_80px_-46px_rgba(0,0,0,.92)] sm:mt-5 sm:rounded-[1.8rem] sm:px-6 sm:pb-6 sm:pt-16 lg:order-2 lg:mt-0 lg:rounded-[2rem] lg:p-5">
         <span className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-[#0B1450]/45 to-transparent dark:via-white/20" />
 
         <div>
           <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.27em] text-[#0B1450]/60 dark:text-white/55">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#2145D6]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2145D6] dark:bg-white" />
             <span>{education.eyebrow}</span>
             <span className="h-1.5 w-1.5 rounded-full bg-[#7A1020]" />
           </div>
@@ -282,7 +282,7 @@ function EducationCard({ education, index }) {
           <h3 className="mt-3 text-xl font-black tracking-[-0.035em] text-[#080d35] dark:text-white sm:text-2xl lg:mt-2 lg:text-xl">
             {education.degree}
           </h3>
-          <p className="mt-1 text-sm font-semibold leading-5 text-[#2145D6] dark:text-[#a9b1ff]">
+          <p className="mt-1 text-sm font-semibold leading-5 text-[#2145D6] dark:text-white/75">
             {education.institution}
           </p>
 
@@ -307,10 +307,10 @@ function EducationCard({ education, index }) {
             onToggle={() => togglePanel("coursework")}
             preview={(
               <div className="flex max-w-full items-center gap-2 overflow-hidden whitespace-nowrap">
-                {education.coursework.slice(0, 3).map((course) => (
+                {education.coursework.slice(0, 3).map((course, courseIndex) => (
                   <span
                     key={`preview-${course}`}
-                    className="shrink-0 rounded-full bg-[#e9eaff] px-3 py-1 text-[10px] font-medium text-[#3438a8] dark:bg-white/[0.07] dark:text-[#bec4ff] sm:text-xs"
+                    className={`${courseIndex === 2 ? "hidden sm:inline-flex" : "inline-flex"} shrink-0 rounded-full bg-[#e9eaff] px-3 py-1 text-[10px] font-medium text-[#3438a8] dark:bg-white/[0.08] dark:text-white/80 sm:text-xs`}
                   >
                     {course}
                   </span>
@@ -325,7 +325,7 @@ function EducationCard({ education, index }) {
               {education.coursework.map((course) => (
                 <span
                   key={course}
-                  className="rounded-full bg-[#e9eaff] px-3 py-1.5 text-[10px] font-medium text-[#3438a8] dark:bg-white/[0.07] dark:text-[#bec4ff] sm:text-xs"
+                  className="rounded-full bg-[#e9eaff] px-3 py-1.5 text-[10px] font-medium text-[#3438a8] dark:bg-white/[0.08] dark:text-white/80 sm:text-xs"
                 >
                   {course}
                 </span>
@@ -373,7 +373,7 @@ export function Education() {
           </h2>
         </header>
 
-        <div className="relative mt-12 grid items-start gap-16 lg:mt-7 lg:gap-9">
+        <div className="relative mt-9 grid items-start gap-10 sm:mt-12 sm:gap-12 lg:mt-7 lg:gap-9">
           <EducationBridgeWeb />
           {educationData.map((education, index) => (
             <EducationCard

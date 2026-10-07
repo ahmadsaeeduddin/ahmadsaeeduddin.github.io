@@ -65,58 +65,64 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --spider-blue-light: #5b6df0;
+    --spider-blue-mid: #2145d6;
+    --spider-blue-dark: #0b1450;
   }
 
   .dark {
-    /* Dark theme colors */
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    /* Monochrome dark theme with restrained crimson accents */
+    --background: 0 0% 1.5%;
+    --foreground: 0 0% 96%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 215 28% 17%;
-    --secondary-foreground: 213 31% 91%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 94%;
 
-    --muted: 215 28% 17%;
-    --muted-foreground: 217 10% 65%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 64%;
 
-    --accent: 215 28% 17%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 0 0% 11%;
+    --accent-foreground: 0 0% 96%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 262 83% 58%;
+    --border: 0 0% 16%;
+    --input: 0 0% 14%;
+    --ring: 0 0% 72%;
 
     /* Custom dark theme colors */
-    --hero-gradient-start: 262 83% 58%;
-    --hero-gradient-end: 213 93% 67%;
-    --skill-card: 215 28% 17%;
-    --skill-card-hover: 262 83% 20%;
-    --project-card-1: 262 83% 58%;
-    --project-card-2: 213 93% 67%;
-    --project-card-3: 142 76% 36%;
-    --project-card-4: 38 92% 50%;
-    --project-card-5: 271 91% 65%;
-    --nav-bg: 224 71% 4% / 0.8;
-    --section-bg: 215 28% 17%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --hero-gradient-start: 0 0% 94%;
+    --hero-gradient-end: 0 0% 22%;
+    --skill-card: 0 0% 5%;
+    --skill-card-hover: 0 0% 9%;
+    --project-card-1: 0 0% 72%;
+    --project-card-2: 0 0% 30%;
+    --project-card-3: 0 0% 18%;
+    --project-card-4: 0 0% 24%;
+    --project-card-5: 0 0% 42%;
+    --nav-bg: 0 0% 2% / 0.88;
+    --section-bg: 0 0% 4%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 88%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 11%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 0 0% 70%;
+    --spider-blue-light: #f1f1f1;
+    --spider-blue-mid: #777777;
+    --spider-blue-dark: #151515;
   }
 }
 
@@ -132,8 +138,38 @@
   }
 
   .dark body {
-    /* Keep dark mode as is, no gradient */
-    background: hsl(var(--background));
+    background: #040404;
+    color-scheme: dark;
+  }
+
+  .dark img {
+    filter: grayscale(1) saturate(0) contrast(1.08);
+  }
+
+  /* Every rendered dark-mode surface is deliberately monochrome. Keeping
+     this at component boundaries avoids changing fixed-position behavior. */
+  .dark main > section,
+  .dark footer,
+  .dark nav[data-site-navbar],
+  .dark [data-scroll-web-slinger] {
+    filter: grayscale(1) saturate(0);
+  }
+
+  .education-node-ring {
+    background: conic-gradient(from 205deg, #0b1450 0deg, #2145d6 112deg, #7a1020 235deg, #0b1450 360deg);
+  }
+
+  .dark .education-node-ring {
+    background: conic-gradient(from 205deg, #050505 0deg, #f4f4f4 112deg, #777 235deg, #050505 360deg);
+  }
+
+  [data-experience-card] {
+    --experience-active: var(--experience-accent);
+  }
+
+  .dark [data-experience-card] {
+    --experience-active: var(--experience-accent-dark);
+    background-image: repeating-linear-gradient(135deg, transparent 0 10px, rgba(255, 255, 255, 0.035) 10px 11px) !important;
   }
 
   html {
