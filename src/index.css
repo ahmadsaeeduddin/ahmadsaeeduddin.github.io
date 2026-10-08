@@ -148,7 +148,7 @@
 
   /* Every rendered dark-mode surface is deliberately monochrome. Keeping
      this at component boundaries avoids changing fixed-position behavior. */
-  .dark main > section,
+  .dark main > section:not(#experience),
   .dark footer,
   .dark nav[data-site-navbar],
   .dark [data-scroll-web-slinger] {
@@ -169,6 +169,7 @@
 
   .dark [data-experience-card] {
     --experience-active: var(--experience-accent-dark);
+    --experience-stripe-active: var(--experience-stripe-dark);
     background-image: repeating-linear-gradient(135deg, transparent 0 10px, rgba(255, 255, 255, 0.035) 10px 11px) !important;
   }
 
