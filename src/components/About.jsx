@@ -140,8 +140,10 @@ export function About() {
       for (let offset = 1; offset < ABOUT_FRAME_COUNT; offset += 1) {
         const previous = index - offset;
         const next = index + offset;
-        if (previous >= 0 && frames[previous]?.complete) return frames[previous];
-        if (next < ABOUT_FRAME_COUNT && frames[next]?.complete) return frames[next];
+        if (previous >= 0 && frames[previous]?.complete)
+          return frames[previous];
+        if (next < ABOUT_FRAME_COUNT && frames[next]?.complete)
+          return frames[next];
       }
       return null;
     };
@@ -185,7 +187,7 @@ export function About() {
           0,
           destinationY,
           destinationWidth,
-          destinationHeight
+          destinationHeight,
         );
         currentFrame = index;
         return;
@@ -210,7 +212,7 @@ export function About() {
         0,
         0,
         canvas.width,
-        canvas.height
+        canvas.height,
       );
       currentFrame = index;
     };
@@ -319,7 +321,7 @@ export function About() {
                   duration: 14,
                   ease: "power2.out",
                 },
-                ">-2"
+                ">-2",
               )
               .to(interestsPanel, { autoAlpha: 1, duration: 24 })
               .to(interestsPanel, {
@@ -328,7 +330,7 @@ export function About() {
                 duration: 12,
                 ease: "power2.in",
               });
-          }
+          },
         );
       }, section);
 
@@ -365,67 +367,76 @@ export function About() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(246,247,252,.02)_0%,rgba(246,247,252,.1)_30%,rgba(246,247,252,.88)_51%,rgba(246,247,252,.99)_100%)] dark:bg-[linear-gradient(180deg,rgba(8,8,9,.06)_0%,rgba(8,8,9,.16)_30%,rgba(8,8,9,.9)_51%,rgba(8,8,9,.99)_100%)] lg:hidden" />
 
         <div className="absolute inset-0 z-10 mx-auto max-w-[1600px] motion-reduce:relative motion-reduce:min-h-[100svh] motion-reduce:space-y-6 motion-reduce:px-5 motion-reduce:pb-24 motion-reduce:pt-[42svh] sm:motion-reduce:px-8 lg:relative lg:grid lg:min-h-[100svh] lg:grid-cols-[minmax(0,1fr)_clamp(20rem,32vw,31rem)_minmax(0,1fr)] lg:items-center lg:gap-5 lg:px-8 lg:pb-28 lg:pt-16 xl:gap-8 xl:px-12">
-        <div
-          ref={bioPanelRef}
-          className="absolute inset-x-5 bottom-[5.75rem] max-h-[59svh] overflow-y-auto sm:inset-x-8 motion-reduce:relative motion-reduce:inset-auto motion-reduce:max-h-none motion-reduce:overflow-visible lg:static lg:max-h-none lg:overflow-visible lg:pr-1 xl:pr-4"
-        >
-          <div className="rounded-[2rem] border border-white/55 bg-white/[0.58] p-5 shadow-[0_28px_80px_-50px_rgba(11,20,80,.58)] backdrop-blur-2xl dark:border-white/10 dark:bg-[#09090b]/[0.62] sm:p-7 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-none lg:dark:bg-transparent">
-            <p data-web-land="about-bio" className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
-              About me
-            </p>
-            <h2 data-motion-heading className="mt-5 text-balance text-[clamp(2.65rem,4vw,4.6rem)] font-black leading-[0.92] tracking-[-0.06em] text-[#080d35] dark:text-white">
-              <TextRepel text="Tingling with questions." accentLastCharacter />
-            </h2>
+          <div
+            ref={bioPanelRef}
+            className="absolute inset-x-5 bottom-[5.75rem] max-h-[59svh] overflow-y-auto sm:inset-x-8 motion-reduce:relative motion-reduce:inset-auto motion-reduce:max-h-none motion-reduce:overflow-visible lg:static lg:max-h-none lg:overflow-visible lg:pr-1 xl:pr-4"
+          >
+            <div className="rounded-[2rem] border border-white/55 bg-white/[0.58] p-5 shadow-[0_28px_80px_-50px_rgba(11,20,80,.58)] backdrop-blur-2xl dark:border-white/10 dark:bg-[#09090b]/[0.62] sm:p-7 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-none lg:dark:bg-transparent">
+              <p
+                data-web-land="about-bio"
+                className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]"
+              >
+                About me
+              </p>
+              <h2
+                data-motion-heading
+                className="mt-5 text-balance text-[clamp(2.65rem,4vw,4.6rem)] font-black leading-[0.92] tracking-[-0.06em] text-[#080d35] dark:text-white"
+              >
+                <TextRepel
+                  text="Tingling with questions."
+                  accentLastCharacter
+                />
+              </h2>
 
-            <div className="mt-5 space-y-3 text-[17px] leading-6 text-slate-600 dark:text-slate-300 sm:text-sm">
-              <p>
-                I&apos;m a Computer Science student at{" "}
-                <strong className="font-bold text-[#0B1450] dark:text-white">
-                  FAST National University
-                </strong>
-                , where I teach machines to learn, build full-stack things, and
-                ask &quot;wait, why does that work?&quot; a few too many times.
-              </p>
-              <p>
-                Give me a messy problem and I&apos;ll happily lose a weekend
-                turning it into something that actually works. Bonus points if
-                it&apos;s weird, hard, or both.
-              </p>
-              <p className="border-l-2 border-[#B51B32]/45 pl-4 text-[#0B1450]/75 dark:text-white/70">
-                I bounce between AI products, software engineering, research,
-                travel, and community building, and somehow it all ends up
-                connected.
-              </p>
+              <div className="mt-5 space-y-3 text-[17px] leading-6 text-slate-600 dark:text-slate-300 sm:text-sm">
+                <p>
+                  I&apos;m an AI Engineer and graduate of{" "}
+                  <strong className="font-bold text-[#0B1450] dark:text-white">
+                    FAST National University
+                  </strong>
+                  . By day I build AI agents, vision systems, and full-stack
+                  products that have to survive real users, not just a demo.
+                </p>
+                <p>
+                  Give me a messy problem and I&apos;ll happily lose a weekend
+                  turning it into something that actually works. Bonus points if
+                  it&apos;s weird, hard, or both.
+                </p>
+                <p className="border-l-2 border-[#B51B32]/45 pl-4 text-[#0B1450]/75 dark:text-white/70">
+                  Outside the day job, I bounce between exploring something new,
+                  travel, and community building, and somehow it all ends up
+                  connected.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="hidden lg:block" aria-hidden="true">
-          <span className="absolute left-1/2 top-[14%] -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-black/10 px-4 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-white/65 opacity-0 backdrop-blur-sm transition-opacity duration-500 xl:opacity-100">
-            Looking toward what&apos;s next
-          </span>
-        </div>
-
-        <aside
-          ref={interestsPanelRef}
-          className="invisible absolute inset-x-5 bottom-[5.75rem] max-h-[59svh] translate-y-[16%] overflow-y-auto opacity-0 sm:inset-x-8 motion-reduce:visible motion-reduce:relative motion-reduce:inset-auto motion-reduce:max-h-none motion-reduce:translate-y-0 motion-reduce:overflow-visible motion-reduce:opacity-100 lg:visible lg:static lg:mt-0 lg:max-h-none lg:translate-y-0 lg:overflow-visible lg:opacity-100 lg:pl-2 xl:pl-5"
-        >
-          <div className="rounded-[2rem] border border-white/60 bg-white/[0.56] p-5 shadow-[0_28px_80px_-50px_rgba(11,20,80,.58)] backdrop-blur-2xl dark:border-white/10 dark:bg-[#09090b]/[0.64] sm:p-6">
-            <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#B51B32] dark:text-[#e16a78]">
-              What keeps me moving
-            </p>
-            <h3 className="mt-2 max-w-sm text-xl font-black leading-tight tracking-[-0.04em] text-[#080d35] dark:text-white">
-              A few things I keep coming back to
-              <span className="text-[#B51B32]">.</span>
-            </h3>
-            <div className="mt-5">
-              <JourneyRail />
-            </div>
-            <div className="mt-6 border-t border-[#0B1450]/10 pt-5 dark:border-white/10">
-              <StatGrid />
-            </div>
+          <div className="hidden lg:block" aria-hidden="true">
+            <span className="absolute left-1/2 top-[14%] -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-black/10 px-4 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-white/65 opacity-0 backdrop-blur-sm transition-opacity duration-500 xl:opacity-100">
+              Looking toward what&apos;s next
+            </span>
           </div>
-        </aside>
+
+          <aside
+            ref={interestsPanelRef}
+            className="invisible absolute inset-x-5 bottom-[5.75rem] max-h-[59svh] translate-y-[16%] overflow-y-auto opacity-0 sm:inset-x-8 motion-reduce:visible motion-reduce:relative motion-reduce:inset-auto motion-reduce:max-h-none motion-reduce:translate-y-0 motion-reduce:overflow-visible motion-reduce:opacity-100 lg:visible lg:static lg:mt-0 lg:max-h-none lg:translate-y-0 lg:overflow-visible lg:opacity-100 lg:pl-2 xl:pl-5"
+          >
+            <div className="rounded-[2rem] border border-white/60 bg-white/[0.56] p-5 shadow-[0_28px_80px_-50px_rgba(11,20,80,.58)] backdrop-blur-2xl dark:border-white/10 dark:bg-[#09090b]/[0.64] sm:p-6">
+              <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#B51B32] dark:text-[#e16a78]">
+                What keeps me moving
+              </p>
+              <h3 className="mt-2 max-w-sm text-xl font-black leading-tight tracking-[-0.04em] text-[#080d35] dark:text-white">
+                A few things I keep coming back to
+                <span className="text-[#B51B32]">.</span>
+              </h3>
+              <div className="mt-5">
+                <JourneyRail />
+              </div>
+              <div className="mt-6 border-t border-[#0B1450]/10 pt-5 dark:border-white/10">
+                <StatGrid />
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
