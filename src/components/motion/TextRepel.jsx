@@ -14,7 +14,7 @@ export function TextRepel({
   damping = 14,
   mass = 0.4,
   accentLastCharacter = false,
-  accentClassName = "text-[#B51B32]",
+  accentClassName = "text-[#B51B32] dark:text-[#a0a0a0]",
 }) {
   const containerRef = useRef(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });

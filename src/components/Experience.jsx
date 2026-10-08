@@ -94,7 +94,7 @@ const experiences = [
 function ExperienceCard({ experience, index }) {
   const isRed = index % 2 === 1;
   const accent = isRed ? "#B51B32" : "#2145D6";
-  const darkAccent = isRed ? "#B51B32" : "#333333";
+  const darkAccent = isRed ? "#777777" : "#3f3f3f";
 
   return (
     <article
@@ -111,6 +111,8 @@ function ExperienceCard({ experience, index }) {
         zIndex: index + 1,
         "--experience-accent": accent,
         "--experience-accent-dark": darkAccent,
+        "--experience-stripe-active": isRed ? "#2145D6" : "#B51B32",
+        "--experience-stripe-dark": isRed ? "#d4d4d4" : "#858585",
         backgroundImage:
           "repeating-linear-gradient(135deg, transparent 0 10px, rgba(11,20,80,.055) 10px 11px)",
       }}
@@ -118,7 +120,7 @@ function ExperienceCard({ experience, index }) {
       <div
         className="absolute inset-x-0 top-0 h-2"
         style={{
-          background: "linear-gradient(90deg, var(--experience-active), #111 52%, #B51B32)",
+          background: "linear-gradient(90deg, var(--experience-active), #111 52%, var(--experience-stripe-active))",
         }}
       />
       <span
@@ -139,7 +141,7 @@ function ExperienceCard({ experience, index }) {
             {experience.category} · {experience.period}
           </div>
 
-          <h3 className="mt-6 max-w-xl text-[clamp(2.35rem,6vw,5.4rem)] font-black leading-[0.82] tracking-[-0.07em] [text-shadow:3px_3px_0_rgba(181,27,50,.2)] sm:mt-7">
+          <h3 className="mt-6 max-w-xl text-[clamp(2.35rem,6vw,5.4rem)] font-black leading-[0.82] tracking-[-0.07em] [text-shadow:3px_3px_0_rgba(181,27,50,.2)] dark:[text-shadow:3px_3px_0_rgba(255,255,255,.1)] sm:mt-7">
             {experience.title}
             <span style={{ color: "var(--experience-active)" }}>.</span>
           </h3>
@@ -291,10 +293,10 @@ export function Experience() {
         ref={stageRef}
         className="relative h-[100svh] min-h-[44rem] overflow-hidden motion-reduce:h-auto motion-reduce:min-h-0 motion-reduce:overflow-visible motion-reduce:px-4 motion-reduce:py-20"
       >
-        <div className="pointer-events-none absolute inset-0 opacity-50 dark:opacity-20 [background-image:radial-gradient(circle_at_18%_24%,rgba(33,69,214,.16),transparent_25%),radial-gradient(circle_at_84%_72%,rgba(181,27,50,.14),transparent_28%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-50 dark:opacity-25 [background-image:radial-gradient(circle_at_18%_24%,rgba(33,69,214,.16),transparent_25%),radial-gradient(circle_at_84%_72%,rgba(181,27,50,.14),transparent_28%)] dark:[background-image:radial-gradient(circle_at_18%_24%,rgba(255,255,255,.1),transparent_25%),radial-gradient(circle_at_84%_72%,rgba(135,135,135,.1),transparent_28%)]" />
         <header className="absolute inset-x-5 top-[5.5%] z-20 mx-auto flex max-w-[70rem] items-end justify-between gap-5 motion-reduce:relative motion-reduce:inset-auto motion-reduce:mb-10 sm:top-[6.5%]">
           <div>
-            <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-[#e16a78]">
+            <p className="inline-flex rounded-full border border-[#7A1020]/20 bg-white/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.36em] text-[#7A1020] shadow-[0_10px_28px_-18px_rgba(122,16,32,.55)] backdrop-blur-xl dark:border-white/15 dark:bg-white/[0.07] dark:text-white/70 dark:shadow-[0_10px_28px_-18px_rgba(255,255,255,.18)]">
               Experience
             </p>
             <h2
